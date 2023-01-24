@@ -1,0 +1,16 @@
+{
+  "name": "server-class-online-winarno",
+  "version": "1.0.0",
+  "description": "server-class-online-winarno",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev":"nodemon src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "win",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

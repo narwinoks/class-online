@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const path = require("path");
 const Auth = require("./router/Auth");
+const createError = require("./middleware/error/createError");
 const app = express();
 const corsOptions = {
   origin: "http://example.com",
@@ -22,6 +23,18 @@ app.get("/", function (req, res) {
 });
 
 app.use("/api/v1/auth", Auth);
+
+// middleware error handler
+app.use((error, req, res, next) => {
+  const errorStatus = error.status || 500;
+  const errorMessage = error.message || "something wren wrong !";
+  return res.status(errorStatus).json({
+    success: false,
+    message: errorMessage,
+    status: errorStatus,
+    stack: error.stack,
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`APP listening AT ${PORT}`);

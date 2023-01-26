@@ -1,5 +1,6 @@
 const ProfileService = require("../services/User/ProfileService");
 const UserUpdateProfile = require("../services/User/UserUpdateService");
+const ChangePasswordService = require("../services/User/ChangePasswordService");
 // GET PROFILE
 const profile = async (req, res, next) => {
   try {
@@ -13,8 +14,15 @@ const profile = async (req, res, next) => {
 const updateProfile = async (req, res, next) => {
   try {
     const data = await UserUpdateProfile(req);
-    // console.log(data);
     res.status(data.status).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+const changePassword = async (req, res, next) => {
+  try {
+    const response = await ChangePasswordService(req);
+    res.status(response.status).json(response);
   } catch (error) {
     next(error);
   }
@@ -22,4 +30,5 @@ const updateProfile = async (req, res, next) => {
 module.exports = {
   profile,
   updateProfile,
+  changePassword,
 };

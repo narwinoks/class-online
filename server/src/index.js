@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const path = require("path");
 const Auth = require("./router/Auth");
+const User = require("./router/User");
 const createError = require("./middleware/error/createError");
 const app = express();
 const corsOptions = {
@@ -23,6 +24,7 @@ app.get("/", function (req, res) {
 });
 
 app.use("/api/v1/auth", Auth);
+app.use("/api/v1/user/profile", User);
 
 // middleware error handler
 app.use((error, req, res, next) => {

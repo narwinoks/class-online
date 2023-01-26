@@ -22,7 +22,7 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        defaultValue: new Date(),
+        // defaultValue: new Date(),
       },
       email: {
         type: Sequelize.STRING(40),

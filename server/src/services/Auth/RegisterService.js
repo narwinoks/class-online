@@ -1,7 +1,10 @@
 const validEmail = require("../../middleware/validations/Auth/ValidEmail");
 const { User } = require("../../models");
+const { RefreshToken } = require("../../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const {faker} = require("@faker-js/faker");
+
 require("dotenv").config();
 const { JWT_SECRET,JWT_SECRET_REFRESH_TOKEN,JTW_ACCESS_TOKEN_EXPIRED,JWT_REFRESH_TOKEN_EXPIRED } = process.env;
 
@@ -21,20 +24,22 @@ module.exports = async (data) => {
     // INSERT DATA TO DATABASE
     const user = await User.create({
       email: data.email,
-      password: hashPassword
+      password: hashPassword,
     });
     const objectUser ={
        id :user.id,
        admin:user.admin
     };
     // GENERATE ACCESS TOKEN
-    const access_token =await jwt.sign({objectUser} ,JWT_SECRET ,{
+    const access_token =await jwt.sign({data:objectUser} ,JWT_SECRET ,{
       expiresIn : JTW_ACCESS_TOKEN_EXPIRED
     });
     // GENERATE REFRESH TOKEN
-    const refresh_token   = await jwt.sign({objectUser},JWT_SECRET_REFRESH_TOKEN,{
+    const refresh_token   = await jwt.sign({data:objectUser},JWT_SECRET_REFRESH_TOKEN,{
       expiresIn:JWT_REFRESH_TOKEN_EXPIRED
     })
+    // SAVE REFRESH TOKEN
+    const refreshToken = await RefreshToken.create({ user_id : user.id ,token : refresh_token})
     const response ={
       id:user.id,
       access_token:access_token,

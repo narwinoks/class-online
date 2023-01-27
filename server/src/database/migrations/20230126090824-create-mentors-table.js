@@ -3,34 +3,33 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("users", {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     */
+    await queryInterface.createTable("mentors", {
       id: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false,
         autoIncrement: true,
-      },
-      avatar: {
-        type: Sequelize.STRING,
+        primaryKey: true,
         allowNull: true,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: true,
-        // defaultValue: new Date(),
-      },
-      email: {
-        type: Sequelize.STRING(40),
         allowNull: false,
       },
-      password: {
+      profile: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      admin: {
-        type: Sequelize.BOOLEAN,
+      email: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: false,
+      },
+      profession: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -44,6 +43,11 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("users");
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     */
+    await queryInterface.dropTable("mentors");
   },
 };

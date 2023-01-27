@@ -6,6 +6,8 @@ const path = require("path");
 const Auth = require("./router/Auth");
 const User = require("./router/User");
 const Media = require("./router/Media");
+const Banner = require("./router/Banner");
+const Category = require("./router/Category");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
@@ -42,6 +44,8 @@ app.get("/", function (req, res) {
 app.use("/api/v1/auth", Auth);
 app.use("/api/v1/user/profile", User);
 app.use("/api/v1/media", Media);
+app.use("/api/v1/banner", Banner);
+app.use("/api/v1/categories", Category);
 
 // middleware error handler
 app.use((error, req, res, next) => {

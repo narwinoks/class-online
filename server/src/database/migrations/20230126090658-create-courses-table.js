@@ -14,6 +14,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      slug: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
       certificate: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
@@ -47,6 +52,10 @@ module.exports = {
         allowNull: false,
       },
       roadmap_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      category_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

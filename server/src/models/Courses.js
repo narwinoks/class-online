@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNUll: false,
       },
+      slug: {
+        type: DataTypes.STRING,
+        allowNUll: false,
+      },
       certificate: {
         type: DataTypes.BOOLEAN,
         allowNUll: false,
@@ -20,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      type: {
+      status: {
         type: DataTypes.ENUM,
         values: ["draft", "published"],
       },
@@ -38,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       roadmap_id: {
+        type: DataTypes.INTEGER,
+      },
+      category_id: {
         type: DataTypes.INTEGER,
       },
       createdAt: {

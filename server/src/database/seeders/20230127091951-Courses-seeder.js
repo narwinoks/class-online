@@ -1,5 +1,5 @@
 "use strict";
-
+const Slug = require("slug");
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -13,6 +13,7 @@ module.exports = {
       [
         {
           name: "Basic Course Testing",
+          slug: Slug("Basic Course Testing", "-"),
           certificate: true,
           thumbnail: "http://localhost:3001/images/basic-course-testing.jpg",
           type: "premium",
@@ -22,6 +23,7 @@ module.exports = {
           description: "Basic Course Testing Description",
           mentor_id: 1,
           roadmap_id: 1,
+          category_id: 1,
           created_at: new Date(),
           updated_at: new Date(),
         },

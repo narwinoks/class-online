@@ -1,12 +1,12 @@
-const GetRoadMap = require("../services/Roadmap/GetRoadmapService");
+const GetCoursesService = require("../services/Courses/GetCoursesService");
 const ShowRoadMap = require("../services/Roadmap/ShowRoadmapService");
-const PostRoadMap = require("../services/Roadmap/PostRoadmapService");
-const DeleteRoadmap = require("../services/Roadmap/DeleteRoadmapService");
-const EditRoadmap = require("../services/Roadmap/EditRoadmapService");
+const PostCoursesService = require("../services/Courses/PostCoursesService");
+const DeleteCoursesService = require("../services/Courses/DeleteCoursesService");
+const EditCoursesService = require("../services/Courses/EditCoursesService");
 
 const get = async (req, res, next) => {
   try {
-    const response = await GetRoadMap(req);
+    const response = await GetCoursesService(req);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);
@@ -22,7 +22,7 @@ const show = async (req, res, next) => {
 };
 const save = async (req, res, next) => {
   try {
-    const response = await PostRoadMap(req);
+    const response = await PostCoursesService(req);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);
@@ -30,7 +30,8 @@ const save = async (req, res, next) => {
 };
 const edit = async (req, res, next) => {
   try {
-    const response = await EditRoadmap(req);
+    const response = await EditCoursesService(req);
+    console.log(response);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);
@@ -38,7 +39,7 @@ const edit = async (req, res, next) => {
 };
 const destroy = async (req, res, next) => {
   try {
-    const response = await DeleteRoadmap(req.params.id);
+    const response = await DeleteCoursesService(req.params.id);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);

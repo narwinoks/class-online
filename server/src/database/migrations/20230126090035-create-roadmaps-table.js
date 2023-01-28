@@ -23,6 +23,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      level: {
+        type: Sequelize.ENUM,
+        values: ["all-level", "beginner", "intermediate", "advanced"],
+      },
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

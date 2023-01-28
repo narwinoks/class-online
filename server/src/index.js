@@ -8,6 +8,7 @@ const User = require("./router/User");
 const Media = require("./router/Media");
 const Banner = require("./router/Banner");
 const Category = require("./router/Category");
+const Roadmap = require("./router/Roadmap");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
@@ -46,6 +47,7 @@ app.use("/api/v1/user/profile", User);
 app.use("/api/v1/media", Media);
 app.use("/api/v1/banner", Banner);
 app.use("/api/v1/categories", Category);
+app.use("/api/v1/roadmap", Roadmap);
 
 // middleware error handler
 app.use((error, req, res, next) => {

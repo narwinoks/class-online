@@ -1,3 +1,4 @@
+var Courses = require("./Courses");
 module.exports = (sequelize, DataTypes) => {
   const Roadmap = sequelize.define(
     "Roadmap",
@@ -16,6 +17,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNUll: false,
       },
+      description: {
+        type: DataTypes.TEXT,
+        allowNUll: true,
+      },
+      level: {
+        type: DataTypes.ENUM,
+        values: ["all-level", "beginner", "intermediate", "advanced"],
+      },
       createdAt: {
         type: DataTypes.DATE,
         field: "created_at",
@@ -32,5 +41,11 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
+
+  Roadmap.associate = (models) => {
+    Roadmap.hasMany(models.Courses, {
+      foreignKey: "roadmap_id",
+    });
+  };
   return Roadmap;
 };

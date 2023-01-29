@@ -1,5 +1,5 @@
-const GetCoursesService = require("../services/Courses/GetCoursesService");
-const ShowRoadMap = require("../services/Roadmap/ShowRoadmapService");
+const GetCoursesService = require("../services/Courses/GetCourseService");
+const ShowCoursesService = require("../services/Courses/ShowCoursesService");
 const PostCoursesService = require("../services/Courses/PostCoursesService");
 const DeleteCoursesService = require("../services/Courses/DeleteCoursesService");
 const EditCoursesService = require("../services/Courses/EditCoursesService");
@@ -14,7 +14,7 @@ const get = async (req, res, next) => {
 };
 const show = async (req, res, next) => {
   try {
-    const response = await ShowRoadMap(req);
+    const response = await ShowCoursesService(req.params.slug);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);

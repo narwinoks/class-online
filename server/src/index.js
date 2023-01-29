@@ -10,6 +10,10 @@ const Banner = require("./router/Banner");
 const Category = require("./router/Category");
 const Roadmap = require("./router/Roadmap");
 const Courses = require("./router/Courses");
+const Index = require("./router/Index");
+const Chapters = require("./router/Chapters");
+const Lessons = require("./router/Lesson");
+const Mentors = require("./router/Mentors");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
@@ -39,9 +43,11 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "../public")));
 
-app.get("/", function (req, res) {
-  res.json({ message: "successfully" });
-});
+// app.get("/", function (req, res) {
+//   res.json({ message: "successfully" });
+// });
+
+app.get("/", Index);
 
 app.use("/api/v1/auth", Auth);
 app.use("/api/v1/user/profile", User);
@@ -50,6 +56,9 @@ app.use("/api/v1/banner", Banner);
 app.use("/api/v1/categories", Category);
 app.use("/api/v1/roadmap", Roadmap);
 app.use("/api/v1/courses", Courses);
+app.use("/api/v1/chapters", Chapters);
+app.use("/api/v1/lessons", Lessons);
+app.use("/api/v1/mentors", Mentors);
 
 // middleware error handler
 app.use((error, req, res, next) => {

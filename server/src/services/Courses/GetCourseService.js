@@ -22,7 +22,6 @@ module.exports = async (req) => {
     }
   }
 
-  console.info(paramQuerySQL, name);
   const courses = await Courses.findAll(paramQuerySQL);
   if (!courses.length)
     return { status: 404, success: true, message: "empty data" };

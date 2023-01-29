@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNUll: false,
       },
-      courses_id: {
+      course_id: {
         type: DataTypes.INTEGER,
         allowNUll: false,
       },
@@ -32,5 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
+  Chapters.associate = (models) => {
+    Chapters.hasMany(models.Lessons, {
+      foreignKey: "chapter_id",
+    });
+  };
+
   return Chapters;
 };

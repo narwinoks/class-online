@@ -64,16 +64,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Courses.associate = (models) => {
-    Courses.belongsTo(models.Roadmap, {
-      foreignKey: "roadmap_id",
-      sourceKey: "id",
+    Courses.hasMany(models.Chapters, {
+      foreignKey: "course_id",
     });
   };
 
-  Courses.associate = (models) => {
-    Courses.hasMany(models.Lessons, {
-      foreignKey: "courses_id",
-    });
-  };
   return Courses;
 };

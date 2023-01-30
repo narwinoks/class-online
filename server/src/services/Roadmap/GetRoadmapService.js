@@ -16,23 +16,6 @@ module.exports = async (data) => {
     duplicating: false,
     group: ["Roadmap.id"],
   });
-  // {
-  //   include: [
-  //     {
-  //       model: Courses,
-  //       required: true,
-  //     },
-  //   ],
-  //   // group: ['roadmps.id']
-  //   // attributes: ["", "count(*)"],
-  // }
-  // const courses = await Courses.findAll({ where: { roadmap_id: road } });
-  // const response = {
-  //   // roadmps: roadmps,
-  //   courses: courses,
-  // };
-
-  // }
   return {
     status: 200,
     success: true,

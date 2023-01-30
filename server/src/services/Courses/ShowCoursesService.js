@@ -1,4 +1,4 @@
-const { Courses, Chapters, Lessons } = require("../../models");
+const { Courses, Chapters, Lessons, Mentor } = require("../../models");
 module.exports = async (slug) => {
   const course = await Courses.findOne({
     where: { slug: slug },
@@ -8,6 +8,9 @@ module.exports = async (slug) => {
         include: {
           model: Lessons,
         },
+      },
+      {
+        model: Mentor,
       },
     ],
   });

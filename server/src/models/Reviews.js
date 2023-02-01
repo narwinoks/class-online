@@ -12,12 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNUll: false,
       },
-      courses_id: {
+      course_id: {
         type: DataTypes.INTEGER,
-        allowNUll: false,
-      },
-      video: {
-        type: DataTypes.STRING,
         allowNUll: false,
       },
       rating: {

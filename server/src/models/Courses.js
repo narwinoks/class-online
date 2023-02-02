@@ -70,6 +70,9 @@ module.exports = (sequelize, DataTypes) => {
     Courses.belongsTo(models.Mentor, {
       foreignKey: "mentor_id",
     });
+    Courses.hasMany(models.Reviews, {
+      foreignKey: "course_id",
+    });
   };
   // Courses.associate = (models) => {
   //   Courses.belongsTo(models.Mentor, {

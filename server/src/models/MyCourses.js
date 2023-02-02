@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define(
-    "Category",
+  const MyCourses = sequelize.define(
+    "MyCourses",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -8,11 +8,19 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNUll: false,
       },
-      logo: {
+      name: {
         type: DataTypes.STRING,
         allowNUll: false,
       },
-      name: {
+      profile: {
+        type: DataTypes.STRING,
+        allowNUll: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNUll: false,
+      },
+      profession: {
         type: DataTypes.STRING,
         allowNUll: false,
       },
@@ -28,15 +36,9 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "categories",
+      tableName: "my_courses",
       timestamps: true,
     }
   );
-  Category.associate = (models) => {
-    Category.hasMany(models.Courses, {
-      foreignKey: "category_id",
-    });
-  };
-
-  return Category;
+  return MyCourses;
 };

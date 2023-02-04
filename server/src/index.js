@@ -15,6 +15,7 @@ const Chapters = require("./router/Chapters");
 const Lessons = require("./router/Lesson");
 const Mentors = require("./router/Mentors");
 const Reviews = require("./router/Review");
+const MyCourse = require("./router/MyCourse");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
@@ -61,6 +62,7 @@ app.use("/api/v1/chapters", Chapters);
 app.use("/api/v1/lessons", Lessons);
 app.use("/api/v1/mentors", Mentors);
 app.use("/api/v1/reviews", Reviews);
+app.use("/api/v1/my-courses", MyCourse);
 
 // middleware error handler
 app.use((error, req, res, next) => {

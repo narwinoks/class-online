@@ -8,20 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNUll: false,
       },
-      name: {
-        type: DataTypes.STRING,
+      user_id: {
+        type: DataTypes.INTEGER,
         allowNUll: false,
       },
-      profile: {
-        type: DataTypes.STRING,
-        allowNUll: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNUll: false,
-      },
-      profession: {
-        type: DataTypes.STRING,
+      course_id: {
+        type: DataTypes.INTEGER,
         allowNUll: false,
       },
       createdAt: {

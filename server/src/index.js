@@ -16,6 +16,8 @@ const Lessons = require("./router/Lesson");
 const Mentors = require("./router/Mentors");
 const Reviews = require("./router/Review");
 const MyCourse = require("./router/MyCourse");
+const Order = require("./router/Order");
+const WebHook = require("./router/WebHook");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
@@ -63,6 +65,8 @@ app.use("/api/v1/lessons", Lessons);
 app.use("/api/v1/mentors", Mentors);
 app.use("/api/v1/reviews", Reviews);
 app.use("/api/v1/my-courses", MyCourse);
+app.use("/api/v1/order", Order);
+app.use("/api/v1/webhook", WebHook);
 
 // middleware error handler
 app.use((error, req, res, next) => {

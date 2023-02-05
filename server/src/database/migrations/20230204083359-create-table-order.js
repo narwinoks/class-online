@@ -29,7 +29,7 @@ module.exports = {
       },
       snap_url: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       meta_data: {
         type: Sequelize.JSON,

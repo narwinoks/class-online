@@ -22,11 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       snap_url: {
         type: DataTypes.STRING,
-        allowNUll: false,
+        allowNUll: true,
       },
       meta_data: {
-        type: DataTypes.STRING,
-        allowNUll: false,
+        type: DataTypes.JSON,
+        allowNUll: true,
       },
       createdAt: {
         type: DataTypes.DATE,

@@ -13,7 +13,7 @@ module.exports = async (data) => {
   };
   // ITEM DETAILS
   const itemDetails = {
-    id: data.course.id,
+    id: data.course.id + "-" + Math.random(5),
     price: data.course.price,
     quantity: 1,
     name: data.course.name,

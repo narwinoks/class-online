@@ -77,12 +77,9 @@ module.exports = (sequelize, DataTypes) => {
     Courses.hasMany(models.Reviews, {
       foreignKey: "course_id",
     });
+    Courses.belongsTo(models.Category, {
+      foreignKey: "category_id",
+    });
   };
-  // Courses.associate = (models) => {
-  //   Courses.belongsTo(models.Mentor, {
-  //     foreignKey: "mentor_id",
-  //   });
-  // };
-
   return Courses;
 };

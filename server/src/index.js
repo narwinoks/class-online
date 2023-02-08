@@ -18,6 +18,7 @@ const Reviews = require("./router/Review");
 const MyCourse = require("./router/MyCourse");
 const Order = require("./router/Order");
 const WebHook = require("./router/WebHook");
+const MyRoadmap = require("./router/MyRoamap");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
@@ -67,6 +68,7 @@ app.use("/api/v1/reviews", Reviews);
 app.use("/api/v1/my-courses", MyCourse);
 app.use("/api/v1/order", Order);
 app.use("/api/v1/webhook", WebHook);
+app.use("/api/v1/my-roadmap", MyRoadmap);
 
 // middleware error handler
 app.use((error, req, res, next) => {

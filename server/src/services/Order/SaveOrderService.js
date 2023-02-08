@@ -8,12 +8,12 @@ module.exports = async (data) => {
   });
   // TRANSACTION DETAILS
   const transaction_details = {
-    order_id: order.id,
+    order_id: order.id + "-" + Math.random(5),
     gross_amount: data.course.price,
   };
   // ITEM DETAILS
   const itemDetails = {
-    id: data.course.id + "-" + Math.random(5),
+    id: data.course.id,
     price: data.course.price,
     quantity: 1,
     name: data.course.name,
@@ -46,5 +46,5 @@ module.exports = async (data) => {
 
   // RETURN SNAP URL
   const snap_url = urlSnap;
-  return snap_url;
+  return { snap_url };
 };

@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNUll: false,
       },
+      price: {
+        type: DataTypes.DOUBLE,
+        allowNUll: true,
+      },
       description: {
         type: DataTypes.TEXT,
         allowNUll: true,
@@ -24,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       level: {
         type: DataTypes.ENUM,
         values: ["all-level", "beginner", "intermediate", "advanced"],
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNUll: true,
       },
       createdAt: {
         type: DataTypes.DATE,

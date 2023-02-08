@@ -21,7 +21,11 @@ module.exports = {
       },
       course_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+      },
+      roadmap_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
       },
       user_id: {
         type: Sequelize.INTEGER,

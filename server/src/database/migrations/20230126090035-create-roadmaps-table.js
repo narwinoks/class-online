@@ -27,6 +27,14 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ["all-level", "beginner", "intermediate", "advanced"],
       },
+      price: {
+        type: Sequelize.DOUBLE,
+        allowNull: true,
+      },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       description: {
         type: Sequelize.TEXT,
         allowNull: true,
@@ -43,11 +51,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     */
     await queryInterface.dropTable("roadmaps");
   },
 };

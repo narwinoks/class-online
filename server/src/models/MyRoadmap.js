@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Order = sequelize.define(
-    "Order",
+  const MyRoadmap = sequelize.define(
+    "MyRoadmap",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -8,29 +8,13 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNUll: false,
       },
-      status: {
-        type: DataTypes.STRING,
-        default: "pending",
-      },
-      course_id: {
-        type: DataTypes.INTEGER,
-        allowNUll: true,
-      },
-      roadmap_id: {
-        type: DataTypes.INTEGER,
-        allowNUll: true,
-      },
       user_id: {
         type: DataTypes.INTEGER,
         allowNUll: false,
       },
-      snap_url: {
-        type: DataTypes.STRING,
-        allowNUll: true,
-      },
-      meta_data: {
-        type: DataTypes.JSON,
-        allowNUll: true,
+      roadmap_id: {
+        type: DataTypes.INTEGER,
+        allowNUll: false,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -44,9 +28,14 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "order",
+      tableName: "my_roadmaps",
       timestamps: true,
     }
   );
-  return Order;
+  //   MyRoadmap.associate = (models) => {
+  //     MyRoadmap.belongsTo(models.Roadmap, {
+  //       foreigcreated_atnKey: "rcreated_atoadmap_id",
+  //     });
+  //   };
+  return MyRoadmap;
 };

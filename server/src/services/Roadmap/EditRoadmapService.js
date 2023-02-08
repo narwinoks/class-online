@@ -4,8 +4,6 @@ module.exports = async (request) => {
   console.log(roadmap);
   if (!roadmap)
     return { status: 404, success: false, message: "data not found" };
-  roadmap.update({
-    name: request.body.name,
-  });
+  roadmap.update(request.body);
   return { status: 200, success: true, message: "successfully", data: roadmap };
 };

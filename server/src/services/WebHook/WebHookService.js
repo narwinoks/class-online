@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { MIDTRANS_SERVER_KEY, MIDTRANS_CLIENT_KEY } = process.env;
 const sha512 = require("js-sha512");
-const { Order, PaymentLog, MyCourses } = require("../../models");
+const { Order, PaymentLog, MyCourses, Courses,MyRoadmap } = require("../../models");
 
 module.exports = async (req) => {
   const data = req.body;
@@ -67,16 +67,41 @@ module.exports = async (req) => {
   const paymentLog = await PaymentLog.create(logData);
   order.save();
   if (order.status == "success") {
-    const myCourse = await MyCourses.create({
-      user_id: order.user_id,
-      course_id: order.course_id,
-    });
-    return {
-      status: 200,
-      success: true,
-      message: "successfully",
-      data: myCourse,
-    };
+    if (order.course_id !== null) {
+      const myCourse = await MyCourses.create({
+        user_id: order.user_id,
+        course_id: order.course_id,
+      });
+      return {
+        status: 200,
+        success: true,
+        message: "successfully",
+      };
+    }
+
+    if (order.roadmap_id !== null) {
+      const roadMapId = order.roadmap_id;
+      const courses = await Courses.findAll({
+        where: { roadmap_id: roadMapId },
+      });
+      await MyRoadmap.create({
+        roadmap_id: roadMapId,
+        user_id: order.user_id,
+      });
+      const dataInsert = [];
+      courses.forEach((element) => {
+        dataInsert.push({
+          user_id: order.user_id,
+          course_id: element.id,
+        });
+      });
+      await MyCourses.bulkCreate(dataInsert);
+      return {
+        status: 200,
+        success: true,
+        message: "successfully",
+      };
+    }
   }
-  return { status: 200, success: true, message: "successfully", realOrderId };
+  return { status: 200, success: true, message: "successfully", order };
 };

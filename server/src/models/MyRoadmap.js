@@ -32,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true,
     }
   );
-  //   MyRoadmap.associate = (models) => {
-  //     MyRoadmap.belongsTo(models.Roadmap, {
-  //       foreigcreated_atnKey: "rcreated_atoadmap_id",
-  //     });
-  //   };
+  MyRoadmap.associate = (models) => {
+    MyRoadmap.belongsTo(models.Roadmap, {
+      foreignKey: "roadmap_id",
+    });
+  };
   return MyRoadmap;
 };

@@ -5,7 +5,7 @@ const ChangePasswordService = require("../services/User/ChangePasswordService");
 const profile = async (req, res, next) => {
   try {
     const data = await ProfileService(req);
-    res.json({ message: "success", data: data });
+    res.json({ status: 200, success: true, message: "success", data: data });
   } catch (error) {
     next(error);
   }

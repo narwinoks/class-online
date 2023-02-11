@@ -7,6 +7,14 @@ module.exports = async (req) => {
   if (!roadMap) {
     return { status: 404, message: "Roadmap not found" };
   }
+
+  // CHECK DUPLICATE MY COURSES
+  const duplicate = await MyRoadmap.findOne({
+    where: { user_id: userId, roadmap_id: roadmapId },
+  });
+  if (duplicate)
+    return { status: 419, success: false, message: "roadmap already exists" };
+
   const courses = await Courses.findAll({
     where: { roadmap_id: 1 },
   });

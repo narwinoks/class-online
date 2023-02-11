@@ -8,7 +8,7 @@ module.exports = async (data) => {
 try {
 
     const verify =await jwt.verify(refreshToken, JWT_SECRET_REFRESH_TOKEN);
-    if (!verify) return { message: "Invalid Refresh Token" ,success:false,status: 404};
+    if (!verify) return {status: 404 ,success:false, message: "Invalid Refresh Token"};
      // GENERATE ACCESS TOKEN
     const user =verify.data;
     const access_token =await jwt.sign({user} ,JWT_SECRET ,{
@@ -22,8 +22,8 @@ try {
         access_token:access_token,
         refreshToken:refresh_token
     }
-    return { message: "successfully" ,success:true,status:200 ,data:response};
+    return {status:200,success:true, message: "successfully"  ,data:response};
 } catch (error) {
-    return { message: error.message ,success:false,status:error.status || 500};
+    return {status:error.status || 500 ,success:false, message: error.message };
 }
 };

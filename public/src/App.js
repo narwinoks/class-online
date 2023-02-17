@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+// import "./App.css";
+// import "./assets/scss/style.scss";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Navbar></Navbar>
+      <button className="btn btn-danger">Test Login</button>
+      <div className="btn-group">
+        <button
+          type="button"
+          className="btn btn-danger dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
         >
-          Learn React
-        </a>
-      </header>
+          Action
+        </button>
+        <ul className="dropdown-menu">
+          <li>
+            <a className="dropdown-item" href="#">
+              Action
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Another action
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Something else here
+            </a>
+          </li>
+          <li>
+            <hr className="dropdown-divider" />
+          </li>
+          <li>
+            <a className="dropdown-item" href="#">
+              Separated link
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

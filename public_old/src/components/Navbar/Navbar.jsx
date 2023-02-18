@@ -1,7 +1,7 @@
 import React from "react";
 import "./navbar.css"
 import { FaBeer,FaAirFreshener } from 'react-icons/fa';
-import {BsCheckCircle,BsCheckCircleFill  } from 'react-icons/bs';
+import {BsCheckCircleFill  } from 'react-icons/bs';
 
 
 const Navbar = () => {

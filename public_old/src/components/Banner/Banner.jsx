@@ -25,7 +25,7 @@ const Banner = () => {
         slidesPerView={"auto"}
       >
         <SwiperSlide>
-          <div className="card">
+          <div className="card card_banner">
             <img
               src="https://image.web.id/images/Kelasfullstack-Banner-Depan.png"
               className="card-img-bottom"
@@ -45,7 +45,7 @@ const Banner = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="card">
+          <div className="card card_banner">
             <img
               src="https://image.web.id/images/Kelasfullstack-Banner-Depan.png"
               className="card-img-bottom"

@@ -1,0 +1,31 @@
+input{
+    min-width: 15em
+}
+.banner{
+     width:1700px ;
+}
+/* style={{ width: "1664.55px" }} */
+/* style={{ width: "1664.55px" }} */
+.large{
+    min-width: 500px !important;
+}
+.dropdown-menu{
+    margin-top: 25px !important;
+}
+.dropdown{
+    border-radius: 40px;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+    background-color: #eee;
+    text-align: center;
+    padding: 2px;
+    justify-content: center;
+
+}
+.avatar-icon{
+    height: 20px;
+    width: 20px;
+}

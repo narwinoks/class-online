@@ -1,0 +1,10 @@
+.test-background{
+    min-width: 100px;
+    min-height: 100px;
+    /* background: red; */
+    background-image: url("https://via.placeholder.com/500");
+}
+.banner{
+    margin: auto;
+    padding: 10px;
+}

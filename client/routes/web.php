@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Member\CourseController;
+use App\Http\Controllers\Member\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/course', [CourseController::class, 'index']);

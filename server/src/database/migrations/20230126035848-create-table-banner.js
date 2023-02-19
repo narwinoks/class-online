@@ -29,7 +29,7 @@ module.exports = {
       },
       type: {
         type: Sequelize.ENUM,
-        values: ["public", "my_learning", "my_course",'my_roadmap','discussions','webinar','tutorial'],
+        values: ["public", "m", "my_course",'my_roadmap','discussions','webinar','tutorial'],
         allowNull: false,
       },
       created_at: {

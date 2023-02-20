@@ -1,4 +1,4 @@
-const { Courses, Sequelize, Order, Category } = require("../../models");
+const { Courses, Sequelize, Order, Mentor, Category } = require("../../models");
 const Op = Sequelize.Op;
 const moment = require("moment");
 module.exports = async (req) => {
@@ -11,6 +11,11 @@ module.exports = async (req) => {
   //ADD RELATION TO TABLE CATEGORIES
   paramQuerySQL.include = {
     model: Category,
+    attributes: ["name"],
+    // where: { name: category_params },
+  };
+  paramQuerySQL.include = {
+    model: Mentor,
     attributes: ["name"],
     // where: { name: category_params },
   };

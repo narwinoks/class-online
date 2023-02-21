@@ -18,7 +18,7 @@
                                         src="https://codepolitan.com/assets/img/placeholder.jpg" width="30"
                                         class="img-fluid me-2" alt=""><span class="mt-1">Semua Kelas</span></div>
                             </li>
-                            <li class="list-group-item border-0 text-muted px-0" role="button" style="font-weight:">
+                            <li class="list-group-item border-0 text-muted px-0" role="button" style="">
                                 <div class="d-flex align-items-center"><img
                                         src="https://cdn-cdpl.sgp1.digitaloceanspaces.com/assets/img/Teknologi/box-icon-html.jpg"
                                         width="30" class="img-fluid me-2" alt="web"><span class="mt-1">Web</span>
@@ -36,8 +36,8 @@
                                             class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
                                             id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                             aria-expanded="false">Level</button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li class="dropdown-item" role="button">Semua Level</li>
+                                        <ul class="dropdown-menu filter-level" aria-labelledby="dropdownMenuButton1">
+                                            <li class="dropdown-item active" role="button">Semua Level</li>
                                             <li class="dropdown-item" role="button">Pemula</li>
                                             <li class="dropdown-item" role="button">Menengah</li>
                                             <li class="dropdown-item" role="button">Mahir</li>
@@ -75,36 +75,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card card-course">
-                                <img src="https://via.placeholder.com/400X300" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <span class="text-muted my-5">By Winarno</span>
-                                    <h5 class="card-title">Membuat Aplikasi Presensi Online Berbasis Web dan Mobile -
-                                        Kotlin,
-                                        Laravel</h5>
-                                    <p class="card-text">Beginner</p>
-                                </div>
-                                <div class="card-footer bg-white CardCourse_card_footer__8KuSa">
-                                    <div class="CardCourse_rate_and_price__mx63I">
-                                        <div class="row justify-content-between">
-                                            <div class="col-auto">
-                                                <strong>Beli</strong>
-                                                <br />
-                                            </div>
-                                            <div class="col-auto ms-auto text-end">
-                                                <span>
-                                                    <strong>Rp 149,000</strong>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="row" id="coursesData">
+                        <div id="loadingCourses" class="text-center" style="display: none">
+                            <img src="{{ asset('assets/plugins/loading.gif') }}" width="30px">
                         </div>
+
                     </div>
                 </div>
             </div>
     </section>
 @endsection
+@push("scripts")
+    <script>
+        $(document).ready(function(){
+            $('.filter-level').on('click', '.dropdown-item', function() {
+                // Get the selected value from the clicked item
+                $('.filter-level .dropdown-item').removeClass('active');
+                // Add active class to clicked item
+                $(this).addClass('active');
+                loadCoursesData();
+            });
+            var defaultValue = $('.filter-level  .active').text();
+            var activeValue = $(".filter-level .active").text();
+            loadPage();
+            loadCoursesData();
+
+        });
+
+        function loadPage() {
+            $("#loadingCourses").show();
+        }
+
+        function loadCoursesData() {
+            console.log("successfully loaded")
+            $("#loadingCourses").show();
+            const filter            =encodeURIComponent($(".filter-level .active").text());
+            $("#coursesData").load("{{ route('course.getCourses', ['key' => 'courses_get']) }}&fileter=" + filter  , () => {
+                $("#loadingCourses").hide();
+            })
+        }
+    </script>
+@endpush

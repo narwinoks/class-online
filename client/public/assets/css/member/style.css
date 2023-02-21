@@ -11,7 +11,24 @@ section{
 #banner{
     margin-top: 100px;
 }
-.card_roadmap{
-    display: none;
-    /* min-height: 100px; */
+.card-course{
+  cursor: pointer;
+}
+
+.icon-rounded-circle{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+td{
+    vertical-align: middle;
+}
+.start{
+    font-size: 20px;
+}
+.fas.fa-star{
+    color: #FFDF00;
 }

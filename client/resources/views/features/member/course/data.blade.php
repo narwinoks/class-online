@@ -5,7 +5,12 @@
         <div class="card-body">
             <span class="text-muted my-5">By {{$course['Mentor']['name']}}</span>
             <h5 class="card-title">{{$course['name']}}</h5>
-            <p class="card-text">Beginner</p>
+            <div class="row card-text">
+                <small>
+                    <i class="fas fa-chart-line"></i>
+                    <span>{{$course['level']}}</span>
+                </small>
+            </div>
         </div>
         <div class="card-footer bg-white CardCourse_card_footer__8KuSa">
             <div class="CardCourse_rate_and_price__mx63I">

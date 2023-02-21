@@ -66,12 +66,10 @@
                                 </div>
                             </div>
                             <div class="col-md-5 col-lg-4 ms-auto">
-                                <form>
-                                    <div class="input-group"><input type="search" class="form-control shadow-none"
+                                    <div class="input-group"><input id="search_value" type="search" class="form-control shadow-none"
                                             placeholder="cari kelas dan enter disini..."><button
-                                            class="input-group-text bg-white text-muted" role="button" type="submit"
+                                            class="input-group-text bg-white text-muted" role="button" type="submit" onclick="loadCoursesData()"
                                             title="Cari">Search</button></div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -95,11 +93,10 @@
                 $(this).addClass('active');
                 loadCoursesData();
             });
-            var defaultValue = $('.filter-level  .active').text();
-            var activeValue = $(".filter-level .active").text();
-            loadPage();
             loadCoursesData();
-
+            $("#search_value").keyup(function(){
+                loadCoursesData();
+            })
         });
 
         function loadPage() {
@@ -107,10 +104,10 @@
         }
 
         function loadCoursesData() {
-            console.log("successfully loaded")
             $("#loadingCourses").show();
             const filter            =encodeURIComponent($(".filter-level .active").text());
-            $("#coursesData").load("{{ route('course.getCourses', ['key' => 'courses_get']) }}&fileter=" + filter  , () => {
+            const  search           =$("#search_value").val();
+            $("#coursesData").load("{{ route('course.getCourses', ['key' => 'courses_get']) }}&fileter=" + filter + "&name=" + search , () => {
                 $("#loadingCourses").hide();
             })
         }

@@ -11,17 +11,21 @@ class CourseController extends BaseController
 {
     public function index()
     {
-
-        // $course =$this->getCourse();
-        // $courses = $course['data'];
         return view('features.member.course.index');
     }
 
-    public  function getCourse(Request $request){
-        $params ="courses";
-        $course =$this->initialGetFeature($params);
-        $dataCourses =json_decode($course->getBody(),true);
+    public  function getCourse(Request $request)
+    {
+        $params = "courses";
+        $param = $request->all();
+        $course = $this->initialGetFeature($params, $param);
+        $dataCourses = json_decode($course->getBody(), true);
         $courses = $dataCourses['data'];
-        return view('features.member.course.data',compact('courses'));
+        return view('features.member.course.data', compact('courses'));
+    }
+
+    public function detail(Request $request, $id)
+    {
+        return view('features.member.course.detail');
     }
 }

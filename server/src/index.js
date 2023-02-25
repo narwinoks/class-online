@@ -22,10 +22,10 @@ const MyRoadmap = require("./router/MyRoamap");
 const verifyToken = require("./router/ValidToken");
 const app = express();
 const logger = require("morgan");
-const corsOptions = {
-  origin: "http://courses.tes/",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// const corsOptions = {
+//   origin: "http://courses.tes/",
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+// };
 dotenv.config();
 const { PORT } = process.env;
 
@@ -33,7 +33,7 @@ const { PORT } = process.env;
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(logger("dev"));
 app.use(

@@ -256,10 +256,17 @@
                                         </span>
                                         </small></div>
                                     <div class="text-center text-muted pt-2"><span>Beli sekali akses selamanya</span></div>
-                                    <div class="d-grid gap-2 p-2 px-4 my-2"><a target="_blank"
+                                    <div class="d-grid gap-2 p-2 px-4 my-2"><a onclick="event.preventDefault();
+                                        document.getElementById('form-order').submit();"
                                             class="btn btn-success btn-rounded py-3 text-uppercase fw-bold"
                                             href="#">Beli
                                             Sekarang</a></div>
+
+                                            <form action="{{route('course.order.post')}}" id="form-order" method="POST">
+                                            @csrf
+                                            @method("POST")
+                                            <input type="hidden" value="{{$course['id']}}" name="course_id">
+                                            </form>
                                 </div>
                             </div>
                         </div>

@@ -15,7 +15,7 @@ module.exports = (data) => {
   });
 
   const response = {
-    images: `${data.get("host")}/images/${fileName}`,
+    images: `http://${data.get("host")}/images/${fileName}`,
   };
   return {
     status: 200,

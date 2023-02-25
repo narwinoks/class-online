@@ -80,7 +80,9 @@
 {{-- <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script> --}}
 <script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
 <script src="{{asset('assets/plugins/swiper/swiper-element-bundle.min.js')}}"></script>
-<script src="{{asset("assets/plugins/jquery.js")}}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{asset('assets/plugins/bs-notify.min.js')}}"></script>
 @stack('scripts')
+@include('components.alert')
 </body>
 </html>

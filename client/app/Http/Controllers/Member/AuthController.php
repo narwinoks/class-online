@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class AuthController extends BaseController
 {
@@ -28,14 +29,35 @@ class AuthController extends BaseController
         return view('features.member.auth.register');
     }
 
-    public function prosesRegister(RegisterRequest $registerRequest)
+    public function prosesRegister(Request $request)
     {
 
-        $data = $registerRequest->only('email', 'password');
-        $url = "auth/register";
-        $params = [];
-        $body = $data;
-        $request = $this->initialPostFeature($url, $params, $body);
+        $request        = $request->only('email', 'password');
+        $url            = "auth/register";
+        $params         = [];
+        $body           = $request;
+        $now            = Carbon::now();
+        $expiresAt      = $now->addDays(30);
+        $expiresDate    = $expiresAt->toDateTimeString();
+        $request        = $this->initialPostFeature($url, $params, $body);
+        $data           = json_decode($request->getBody(), true);
+        switch ($request->getStatusCode()) {
+            case 200:
+                $response   = $data['data'];
+                $user       = new User();
+                $user->id   = $response['id'];
+                Auth::login($user);
+                Cookie::queue("refresh_token", $response['refresh_token']);
+                Cookie::queue("expire_in",  $expiresDate);
+                $accessToken = Session::put('access_token', $response['access_token']);
+                return redirect()->route('member.dashboard.index');
+                break;
+            default:
+                $response = $data['message'];
+                return redirect()->back()->with('danger', $response);
+                break;  
+        }
+
     }
 
     public function prosesLogin(LoginRequest $loginRequest)

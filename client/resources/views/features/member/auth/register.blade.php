@@ -27,7 +27,7 @@
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                                             id="password" placeholder="password" aria-label="password"
-                                            aria-describedby="basic-addon1" name="password">
+                                            aria-describedby="basic-addon1" name="password" value="{{old('password')}}">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                                 <i class="fa fa-eye-slash"></i>
@@ -41,7 +41,7 @@
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
                                         <input type="password" class="form-control" placeholder="confirm password"
                                             aria-label="Username" aria-describedby="basic-addon1" id="confirmPassword"
-                                            name="password_confirmation">
+                                            name="password_confirmation" value="{{old('password_confirmation')}}">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="toggleConfirmPassword">
@@ -54,8 +54,8 @@
                                     </div>
                                 </form>
                                 <div class="text-center my-5">
-                                    <a href="" class="text-decoration-none text-muted">Don't have an account?
-                                        Register</a>
+                                    <a href="{{route('auth.prosesLogin')}}" class="text-decoration-none text-muted">have an account?
+                                        Login</a>
                                 </div>
 
                             </div>

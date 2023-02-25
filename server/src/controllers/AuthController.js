@@ -6,6 +6,7 @@ const Register = async (req, res, next) => {
   try {
     const response = await RegisterService(req.body);
     res.status(response.status).json(response);
+    // res.status(200).json
   } catch (error) {
     next(error);
   }

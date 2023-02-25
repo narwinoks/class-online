@@ -42,7 +42,7 @@
                                     </div>
                                 </form>
                                 <div class="text-center my-5">
-                                    <a href="" class="text-decoration-none text-muted">Don't have an account?
+                                    <a href="{{route('auth.register')}}" class="text-decoration-none text-muted">Don't have an account?
                                         Register</a>
                                 </div>
 

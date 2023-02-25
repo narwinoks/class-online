@@ -7,6 +7,7 @@
     <title>class online</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/css/member/style.css')}}">
 </head>
 
 <body class="bg-light">

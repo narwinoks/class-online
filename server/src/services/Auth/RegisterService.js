@@ -10,11 +10,11 @@ const { JWT_SECRET,JWT_SECRET_REFRESH_TOKEN,JTW_ACCESS_TOKEN_EXPIRED,JWT_REFRESH
 
 module.exports = async (data) => {
   try {
-    // CHECK VALID EMAIL
-    const checkValidEmail = await validEmail.validEmail(data.email);
-    if (checkValidEmail == "UNDELIVERABLE") {
-      return { status: 404, success: false, message: "Invalid Email Address" };
-    }
+    // // CHECK VALID EMAIL
+    // const checkValidEmail = await validEmail.validEmail(data.email);
+    // if (checkValidEmail == "UNDELIVERABLE") {
+    //   return { status: 404, success: false, message: "Invalid Email Address" };
+    // }
     // DUPLICATE EMAIL
     const duplicateEmail = await User.findOne({ where: { email: data.email } });
     if (duplicateEmail)

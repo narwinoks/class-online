@@ -33,7 +33,7 @@ class RegisterRequest extends FormRequest
         return [
             'email.required' => 'Email is required',
             'email.email' => 'Email is Not Valid Value',
-            'password.required' => 'Password Harus Diisi',
+            'password.required' => 'Password  is Not Required',
         ];
     }
 }

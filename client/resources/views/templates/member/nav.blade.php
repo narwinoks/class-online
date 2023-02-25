@@ -25,12 +25,15 @@
                 <li class="nav-item mx-2">
                     <a class="nav-link active" aria-current="page" href="#">PARTNERSHIP</a>
                 </li>
-                <li class="nav-item dropdown mx-2">
-                    <button type="button" class="btn btn-light px-3 mx-1">Login</button>
-                </li>
-                <li class="nav-item dropdown mx-2">
-                    <button type="button" class="btn btn-success  text-white px-3 mx-1">REGISTER</button>
-                </li>
+                @if (Session()->get('access_token'))
+                @else                    
+                    <li class="nav-item dropdown mx-2">
+                        <button type="button" class="btn btn-light px-3 mx-1">Login</button>
+                    </li>
+                    <li class="nav-item dropdown mx-2">
+                        <button type="button" class="btn btn-success  text-white px-3 mx-1">REGISTER</button>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

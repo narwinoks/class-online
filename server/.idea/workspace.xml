@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4685bc29-4a24-4b5f-8ac5-b4a8137d3420" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/controllers/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/MyCourse/GetMyCourseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/MyCourse/GetMyCourseService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/MyRoadMap/SaveRoadMapService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/MyRoadMap/SaveRoadMapService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/WebHook/WebHookService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/WebHook/WebHookService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../client/resources/views/features/member/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/Http/Controllers/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/Http/Controllers/BaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/Http/Controllers/Member/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/Http/Controllers/Member/CourseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/public/assets/css/member/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/public/assets/css/member/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/resources/views/features/member/course/data.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/resources/views/features/member/course/data.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/resources/views/features/member/course/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/resources/views/features/member/course/detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/resources/views/templates/member/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/resources/views/templates/member/footer.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../client/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +48,7 @@
       <updated>1675522475101</updated>
       <workItem from="1675522477184" duration="8000" />
       <workItem from="1676096584990" duration="3000" />
+      <workItem from="1677162809205" duration="5000" />
     </task>
     <servers />
   </component>

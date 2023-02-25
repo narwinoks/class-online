@@ -79,7 +79,7 @@
 </footer>
 {{-- <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script> --}}
 <script src="{{ asset('assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+<script src="{{asset('assets/plugins/swiper/swiper-element-bundle.min.js')}}"></script>
 <script src="{{asset("assets/plugins/jquery.js")}}"></script>
 @stack('scripts')
 </body>

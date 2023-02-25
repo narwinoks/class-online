@@ -24,8 +24,18 @@ class CourseController extends BaseController
         return view('features.member.course.data', compact('courses'));
     }
 
-    public function detail(Request $request, $id)
+    public function detail(Request $request, $slug)
     {
-        return view('features.member.course.detail');
+        $course = $this->getDetailCourse($slug);
+        return view('features.member.course.detail', compact('course'));
+    }
+
+    public function getDetailCourse($slug)
+    {
+        $params = "courses/" . $slug;
+        $course = $this->initialGetFeature($params);
+        $dataCourse = json_decode($course->getBody(), true);
+        $course = $dataCourse['data'];
+        return $course;
     }
 }

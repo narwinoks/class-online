@@ -19,10 +19,11 @@ const MyCourse = require("./router/MyCourse");
 const Order = require("./router/Order");
 const WebHook = require("./router/WebHook");
 const MyRoadmap = require("./router/MyRoamap");
+const verifyToken = require("./router/ValidToken");
 const app = express();
 const logger = require("morgan");
 const corsOptions = {
-  origin: "http://example.com",
+  origin: "http://courses.tes/",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 dotenv.config();
@@ -53,6 +54,7 @@ app.use(express.static(path.join(__dirname, "../public")));
 // });
 
 app.get("/", Index);
+app.use("/api/v1/valid-token", verifyToken);
 
 app.use("/api/v1/auth", Auth);
 app.use("/api/v1/user/profile", User);

@@ -7,6 +7,6 @@ const verifyToken = require("../middleware/auth/checkToken");
 router.post("/login", ValidationLogin, AuthController.Login);
 router.post("/register", ValidatorRegistry, AuthController.Register);
 router.delete("/logout", verifyToken, AuthController.Logout);
-router.get("/refresh-token", verifyToken, AuthController.RefreshToken);
+router.get("/refresh-token", AuthController.RefreshToken);
 
 module.exports = router;

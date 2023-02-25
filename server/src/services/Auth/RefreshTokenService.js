@@ -9,13 +9,18 @@ try {
 
     const verify =await jwt.verify(refreshToken, JWT_SECRET_REFRESH_TOKEN);
     if (!verify) return {status: 404 ,success:false, message: "Invalid Refresh Token"};
-     // GENERATE ACCESS TOKEN
-    const user =verify.data;
-    const access_token =await jwt.sign({user} ,JWT_SECRET ,{
+    // GENERATE ACCESS TOKEN
+   const user =verify.data;
+    // PAYLOAD DATA
+    const objectUser ={
+        id :user.id,
+        admin:user.admin
+    };
+    const access_token =await jwt.sign({data:objectUser} ,JWT_SECRET ,{
         expiresIn : JTW_ACCESS_TOKEN_EXPIRED
     });
     // GENERATE REFRESH TOKEN
-    const refresh_token   = await jwt.sign({user},JWT_SECRET_REFRESH_TOKEN,{
+    const refresh_token   = await jwt.sign({data:objectUser},JWT_SECRET_REFRESH_TOKEN,{
         expiresIn:JWT_REFRESH_TOKEN_EXPIRED
     })
     const response ={

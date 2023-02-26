@@ -35,17 +35,10 @@ class BaseController extends Controller
 
     public function initialPostFeature($params, $param = [], $body = [] ,$token ="")
     {
-        $token = "";
-        $session = "";
         $url = env("BASE_URL_API_DEV");
-        // $params = 'warehouse/list.do';
         $client = new Client(['base_uri' => $url]);
-
-        // $parameter = [];
-        // $parameter = array_merge($parameter,$param);
-
         $headers = [
-            'Authorization' => 'Bearer ' . $token,
+            'Authorization' => $token,
             'Accept' => 'application/json',
 
         ];
@@ -59,13 +52,11 @@ class BaseController extends Controller
 
             ]);
 
-            // return json_decode($response->getBody(), true);
             return $response;
         } catch (ClientException $e) {
             return $e->getResponse();
-            // echo Psr7\Message::toString($e->getRequest());
-            // return json_decode($e->getResponse()->getBody(true), true);
         }
+        return $response;
     }
     public function initialDeleteFeature($params, $param = [],$token)
     {

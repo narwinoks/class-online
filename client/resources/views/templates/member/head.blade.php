@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.css') }}">
     <link rel="stylesheet" href="{{asset('assets/css/member/style.css')}}">
+    @stack('styles')
 </head>
 
 <body class="bg-light">

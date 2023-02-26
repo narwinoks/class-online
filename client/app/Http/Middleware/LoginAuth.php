@@ -19,6 +19,6 @@ class LoginAuth
         if (session()->get('access_token')) {
             return $next($request);
         }
-        return redirect()->back();
+        return redirect()->route('auth.index');
     }
 }

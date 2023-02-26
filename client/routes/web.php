@@ -5,6 +5,7 @@ use App\Http\Controllers\Member\HomeController;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Member\AuthController;
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\MyOrderController;
 use App\Http\Controllers\Member\OrderController;
 use App\Http\Controllers\Member\ProfileController;
 
@@ -37,6 +38,10 @@ Route::prefix('learn')->name('member.')->group(function () {
         Route::put('/','updateProfile')->name('update');
         Route::put('/change-password','changePassword')->name('changePassword');
     });
+    Route::prefix('/order')->name('order.')->controller(MyOrderController::class)->group(function(){
+        Route::get('/' ,'index');
+        Route::get('/data-order','getOrder')->name('data');
+    });
 });
 
 
@@ -51,5 +56,3 @@ Route::prefix('course')->name('course.')->group(function () {
         Route::post('/','post')->name('post');
     });
 });
-
-// Route::get('/test', [AuthController::class, 'test'])->name('test');

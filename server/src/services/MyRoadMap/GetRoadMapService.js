@@ -6,7 +6,7 @@ module.exports = async (req) => {
     include: [
       {
         model: Roadmap,
-        attributes: ["id", "name"],
+        attributes: ["id", "name", "logo"],
       },
     ],
     attributes: ["id", "createdAt", "updatedAt"],

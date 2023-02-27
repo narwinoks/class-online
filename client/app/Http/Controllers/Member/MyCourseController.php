@@ -5,41 +5,37 @@ namespace App\Http\Controllers\Member;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
-class DashboardController extends BaseController
+class MyCourseController extends BaseController
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index(Request $request)
     {
-        $data = $this->getDashboardData();
-        return view('features.member.dashboard.index',compact('data'));
+        $myCourses = $this->getMyCourse();
+        return view('features.member.mycourses.index', compact('myCourses'));
     }
 
-    public function getDashboardData()
+    public function getMyCourse()
     {
-        $url = "dashboard";
-        $token = Session::get("access_token");
+        // GET ACCESS TOKEN
+        $token = Session::get('access_token');
+        $url   = "my-courses";
         $params = [];
         $request = $this->initialGetFeature($url, $params, $token);
+        // dd($request->getBody(), true);
         $status = $request->getStatusCode();
         if ($status == 200) {
             $data = json_decode($request->getBody(), true);
-            return  $data['data'];
-        } elseif ($status == 403) {
+            return $data['data'];
+        } else if ($status == 403) {
             $refreshToken = $this->getRefreshToken();
             $token = Session::get('access_token');
             $request = $this->initialGetFeature($url, $params, $token);
             $data = json_decode($request->getBody(), true);
-            return  $data['data'];
+            return $data['data'];
         } else {
-            return [];
+            $error = json_decode($request->getBody(), true);
+            return redirect()->back()->with('danger', $error['message']);
         }
     }
 }

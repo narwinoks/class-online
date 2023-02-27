@@ -5,7 +5,9 @@ use App\Http\Controllers\Member\HomeController;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Member\AuthController;
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\MyCourseController;
 use App\Http\Controllers\Member\MyOrderController;
+use App\Http\Controllers\Member\MyRoadmapController;
 use App\Http\Controllers\Member\OrderController;
 use App\Http\Controllers\Member\ProfileController;
 
@@ -26,21 +28,27 @@ Route::controller(AuthController::class)->name('auth.')->group(function () {
     Route::get('/register', 'register')->name('register');
     Route::post('/login', 'prosesLogin')->name('prosesLogin');
     Route::post('/register', 'prosesRegister')->name('prosesRegister');
-    Route::delete('/logout','logout')->name('prosesLogout');
+    Route::delete('/logout', 'logout')->name('prosesLogout');
 });
 Route::prefix('learn')->name('member.')->group(function () {
     Route::name('dashboard.')->controller(DashboardController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/test','test')->name('test');
+        Route::get('/test', 'test')->name('test');
     });
-    Route::prefix('/profile')-> name('profile.')->controller(ProfileController::class)->group(function () {
-        Route::get('/','index')->name('index');
-        Route::put('/','updateProfile')->name('update');
-        Route::put('/change-password','changePassword')->name('changePassword');
+    Route::prefix('/profile')->name('profile.')->controller(ProfileController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::put('/', 'updateProfile')->name('update');
+        Route::put('/change-password', 'changePassword')->name('changePassword');
     });
-    Route::prefix('/order')->name('order.')->controller(MyOrderController::class)->group(function(){
-        Route::get('/' ,'index');
-        Route::get('/data-order','getOrder')->name('data');
+    Route::prefix('/order')->name('order.')->controller(MyOrderController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data-order', 'getOrder')->name('data');
+    });
+    Route::prefix('/my-course')->name('my-course.')->controller(MyCourseController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+    Route::prefix('/my-roadmap')->name('my-roadmap.')->controller(MyRoadmapController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
     });
 });
 
@@ -52,7 +60,7 @@ Route::prefix('course')->name('course.')->group(function () {
         Route::get('/{slug}', 'detail')->name('detail');
     });
 
-    Route::controller(OrderController::class)->name('order.')->prefix('/order')->group(function(){
-        Route::post('/','post')->name('post');
+    Route::controller(OrderController::class)->name('order.')->prefix('/order')->group(function () {
+        Route::post('/', 'post')->name('post');
     });
 });

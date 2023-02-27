@@ -21,13 +21,13 @@
                     <div class="row">
                         <div class="col-lg-4 mb-2">
                             <div class="card border-0 shadow-sm p-3 text-primary">
-                                <h2 class="fw-bold text-dark">6</h2>
+                                <h2 class="fw-bold text-dark">{{$data['course'] ?? 0}}</h2>
                                 <p class="text-muted fw-bolder">Kelas Saya</p>
                             </div>
                         </div>
                         <div class="col-lg-4 mb-2">
                             <div class="card border-0 shadow-sm p-3 text-primary">
-                                <h2 class="fw-bold text-dark">3</h2>
+                                <h2 class="fw-bold text-dark">{{$data['roadmap'] ?? 0}}</h2>
                                 <p class="text-muted fw-bolder">Roadmap Saya</p>
                             </div>
                         </div>

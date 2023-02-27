@@ -32,3 +32,6 @@ td{
 .fas.fa-star{
     color: #FFDF00;
 }
+.my-course{
+    min-height: 320px;
+}

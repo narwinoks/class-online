@@ -7,7 +7,7 @@ module.exports = async (req) => {
     include: [
       {
         model: Courses,
-        attributes: ["id", "name", "slug", "thumbnail"],
+        attributes: ["id", "name", "slug", "level","thumbnail"],
       },
     ],
   });

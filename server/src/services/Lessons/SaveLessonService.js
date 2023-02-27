@@ -1,6 +1,5 @@
 const { Lessons, Chapters } = require("../../models");
 module.exports = async (req) => {
-  console.log(req.body);
   const chapter_id = req.body.chapter_id;
   const chapter = await Chapters.findByPk(chapter_id);
   if (!chapter)

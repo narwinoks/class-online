@@ -2,6 +2,7 @@ const SaveLessonService = require("../services/Lessons/SaveLessonService");
 const DeleteLessonService = require("../services/Lessons/DeleteLessonsService");
 const GetLessonService = require("../services/Lessons/GetLessonsService");
 const EditLessonService = require("../services/Lessons/EditLessonService");
+const ShowLessonService = require("../services/Lessons/ShowLessonService");
 const get = async (req, res, next) => {
   try {
     const response = await GetLessonService(req);
@@ -10,9 +11,10 @@ const get = async (req, res, next) => {
     next(error);
   }
 };
-const show = (req, res, next) => {
+const show = async (req, res, next) => {
   try {
-    res.json({ message: "successfully" });
+    const response = await ShowLessonService(req);
+    res.status(response.status).json(response);
   } catch (error) {
     next(error);
   }

@@ -17,6 +17,7 @@ class OrderController extends BaseController
         $url            = "my-courses";
         $params         = [];
         $body           = $request->only('course_id');
+        $type           = $request->type;
         $token          = Session::get('access_token');
         $request        = $this->initialPostFeature($url, $params, $body,$token);
         $data           = json_decode($request->getBody(), true);
@@ -24,7 +25,11 @@ class OrderController extends BaseController
         switch ($status) {
             case 200:
                 $data         = json_decode($request->getBody(),true);
-                return redirect()->to($data['data']['snap_url']);
+                if ($type == "premium") {
+                    return redirect()->to($data['data']['snap_url']);
+                }else{
+                    return redirect()->to($data['message']);
+                }
                 break;
             case 403:
                 $refreshToken = $this->getRefreshToken();
@@ -33,7 +38,11 @@ class OrderController extends BaseController
                 $status       = $request->getStatusCode();
                 if ($status ==200) {
                     $data         = json_decode($request->getBody(),true);
-                    return redirect()->to($data['data']['snap_url']);
+                    if ($type == "premium") {
+                        return redirect()->to($data['data']['snap_url']);
+                    }else{
+                        return redirect()->to($data['message']);
+                    }
                 }else{
                     return redirect()->back()->with('danger' ,'Invalid Access Token !');
                 }

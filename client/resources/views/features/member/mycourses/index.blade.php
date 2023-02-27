@@ -21,7 +21,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $myCourse['Course']['name'] }}</h5>
                                         <p class="card-text text-muted">{{ $myCourse['Course']['level'] }}.</p>
-                                        <a href="#" class="btn btn-success">Belajar Sekarang</a>
+                                        <a href="{{route('member.my-course.detail',$myCourse['Course']['slug'])}}" class="btn btn-success">Belajar Sekarang</a>
                                     </div>
                                 </div>
                             </div>

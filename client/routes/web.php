@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Member\CourseController;
 use App\Http\Controllers\Member\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,8 @@ Route::prefix('learn')->name('member.')->group(function () {
     });
     Route::prefix('/my-course')->name('my-course.')->controller(MyCourseController::class)->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get("/embed" ,"getEmbed")->name("embed");
+        Route::get('/{slug}', 'detail')->name('detail');
     });
     Route::prefix('/my-roadmap')->name('my-roadmap.')->controller(MyRoadmapController::class)->group(function () {
         Route::get('/', 'index')->name('index');
@@ -62,5 +65,12 @@ Route::prefix('course')->name('course.')->group(function () {
 
     Route::controller(OrderController::class)->name('order.')->prefix('/order')->group(function () {
         Route::post('/', 'post')->name('post');
+    });
+});
+
+// ADMIN ROUTES
+Route::prefix('/admin')->name('admin.')->group(function () {
+    Route::controller(AdminDashboardController::class)->prefix('/dashboard')->name('dashboard.')->group(function () {
+        Route::get('/' ,'index')->name('index');
     });
 });

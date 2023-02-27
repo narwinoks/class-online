@@ -25,11 +25,12 @@
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
-                                        <input type="password" class="form-control  @error('password') is-invalid @enderror"
-                                            placeholder="Password" aria-label="password" aria-describedby="basic-addon1"
-                                            name="password" id="password">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="password"
+                                            aria-label="Username" aria-describedby="basic-addon1" id="confirmPassword"
+                                            name="password" value="{{old('password')}}">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="toggleConfirmPassword">
                                                 <i class="fa fa-eye-slash"></i>
                                             </button>
                                         </div>
@@ -54,6 +55,33 @@
         </section>
     </main>
 @endsection
+@push('scripts')
+    <script>
+        /* Add click event listener to the toggle button */
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        togglePassword.addEventListener('click', function(e) {
+            // Toggle the type attribute of the password input field
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // Toggle the eye icon on the button
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        /* Add click event listener to the toggle button */
+        const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+        const confirPassword = document.querySelector('#confirmPassword');
+        toggleConfirmPassword.addEventListener('click', function(e) {
+            // Toggle the type attribute of the password input field
+            const type = confirPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirPassword.setAttribute('type', type);
+            // Toggle the eye icon on the button
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+    </script>
+@endpush
 @push('styles')
     <style>
         /* Hide the password input field by default */
@@ -69,19 +97,4 @@
             margin-top: -1.5rem;
         }
     </style>
-@endpush
-@push('scripts')
-    <script>
-        /* Add click event listener to the toggle button */
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
-        togglePassword.addEventListener('click', function(e) {
-            // Toggle the type attribute of the password input field
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            // Toggle the eye icon on the button
-            this.querySelector('i').classList.toggle('fa-eye');
-            this.querySelector('i').classList.toggle('fa-eye-slash');
-        });
-    </script>
 @endpush

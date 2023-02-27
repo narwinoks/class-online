@@ -38,4 +38,38 @@ class MyCourseController extends BaseController
             return redirect()->back()->with('danger', $error['message']);
         }
     }
+
+    public function detail(Request $request ,$slug){
+        $course =$this->getDetailCourse($slug);
+        return view('features.member.mycourses.learn',compact('course'));
+    }
+
+    public function getDetailCourse($slug){
+        $params = "courses/" . $slug;
+        $course = $this->initialGetFeature($params);
+        $dataCourse = json_decode($course->getBody(), true);
+        $course = $dataCourse['data'];
+        return $course;
+    }
+
+    public function getEmbed(Request $request ){
+        if ($request->id) {
+            $url   = "lessons/" .$request->id;
+            $params = [];
+            $request = $this->initialGetFeature($url);
+            $lesson = json_decode($request->getBody(), true);
+            $data=$lesson['data'];
+            return view('features.member.mycourses.data',compact('data'));
+        }
+    }
+
+    public function getLesson(Request $request){
+        if ($request->id) {
+            $url   = "lessons/" .$request->id;
+            $params = [];
+            $request = $this->initialGetFeature($url);
+            $lesson = json_decode($request->getBody(), true);
+            return $lesson['data'];
+        }
+    }
 }

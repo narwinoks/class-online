@@ -29,7 +29,7 @@ module.exports = async (slug) => {
   const reviews = await Reviews.findAll({
     where: { course_id: course.id },
     order: [["id", "DESC"]],
-    attributes: ["id", "rating"],
+    attributes: ["id", "rating", "note"],
     include: [
       {
         model: User,

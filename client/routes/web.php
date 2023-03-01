@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Member\CourseController;
 use App\Http\Controllers\Member\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -47,7 +50,7 @@ Route::prefix('learn')->name('member.')->group(function () {
     });
     Route::prefix('/my-course')->name('my-course.')->controller(MyCourseController::class)->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get("/embed" ,"getEmbed")->name("embed");
+        Route::get("/embed", "getEmbed")->name("embed");
         Route::get('/{slug}', 'detail')->name('detail');
     });
     Route::prefix('/my-roadmap')->name('my-roadmap.')->controller(MyRoadmapController::class)->group(function () {
@@ -70,7 +73,18 @@ Route::prefix('course')->name('course.')->group(function () {
 
 // ADMIN ROUTES
 Route::prefix('/admin')->name('admin.')->group(function () {
-    Route::controller(AdminDashboardController::class)->prefix('/dashboard')->name('dashboard.')->group(function () {
-        Route::get('/' ,'index')->name('index');
+    Route::controller(AdminAuthController::class)->prefix('/')->name('auth.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/', 'login')->name('login');
+    });
+    Route::controller(DataController::class)->prefix('/data')->name('data.')->group(function () {
+        Route::get('/banner', 'banner')->name('banner');
+    });
+    Route::controller(AdminDashboardController::class)->middleware('auth')->prefix('/dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+    Route::controller(BannerController::class)->prefix('/banner')->middleware('auth')->name('banner.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/data', 'data')->name('data');
     });
 });

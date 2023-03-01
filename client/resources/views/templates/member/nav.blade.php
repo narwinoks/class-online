@@ -14,10 +14,10 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 </form>
                 <li class="nav-item mx-2">
-                    <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                    <a class="nav-link active" aria-current="page" href="/">HOME</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="nav-link active" aria-current="page" href="#">COURSES</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('course.index') }}">COURSES</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link active" aria-current="page" href="#">EXPLORE</a>
@@ -26,7 +26,7 @@
                     <a class="nav-link active" aria-current="page" href="#">PARTNERSHIP</a>
                 </li>
                 @if (Session()->get('access_token'))
-                @else                    
+                @else
                     <li class="nav-item dropdown mx-2">
                         <button type="button" class="btn btn-light px-3 mx-1">Login</button>
                     </li>

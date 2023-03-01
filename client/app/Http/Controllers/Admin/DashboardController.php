@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         return view('features.admin.dashboard.index');
     }
 }

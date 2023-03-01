@@ -42,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.TEXT,
       },
+      excerpt: {
+        type: DataTypes.TEXT,
+      },
       mentor_id: {
         type: DataTypes.INTEGER,
       },

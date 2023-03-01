@@ -11,10 +11,7 @@
                                 src="{{ $course['thumbnail'] }}" alt="{{ $course['name'] }}">
                             <h1 class="section-title ms-lg-3 my-auto h2">{{ $course['name'] }}</h1>
                         </div>
-                        <p class="text-muted my-3">Disini kita akan belajar bagaimana cara membangun aplikasi secara
-                            monolith modern menggunakan Inertia.js dan Vue.js di dalam Laravel. Dengan menggunakan
-                            Inertia.js, kita sudah tidak perlu repot-repot membuat sebuah Rest API, sehingga proses
-                            development akan lebih cepat dan mudah. </p>
+                        <p class="text-muted my-3">{{ $course['excerpt'] }}</p>
                         <div class="d-md-flex d-grid text-center text-lg-start">
                             <span class="badge  border text-primary py-md-2">{{ $course['level'] }}</span>
 
@@ -57,7 +54,7 @@
                                                                                 <i class="fas fa-play text-white"></i>
                                                                             </span>
                                                                         </td>
-                                                                        <td class="text-muted">Cover</td>
+                                                                        <td class="text-muted">{{ $lesson['name'] }}</td>
                                                                         <td class="text-end text-muted">
                                                                             <span class="mx-2">
                                                                                 <i class="fas fa-lock"></i>
@@ -203,12 +200,12 @@
                                     <div class="row g-0">
                                         <div class="row align-items-center justify-content-center">
                                             <div class="col-3 col-lg-3 text-center">
-                                                <img src="http://localhost:3001/images/default.png" class="rounded-circle"
-                                                    height="80px" alt="{{ $review['id'] }}">
+                                                <img src="{{ $review['User']['avatar'] ? $review['User']['avatar'] : 'http://localhost:3001/images/default.png' }}"
+                                                    class="rounded-circle" height="80px" alt="{{ $review['id'] }}">
                                             </div>
                                             <div class="col-8 col-lg-9">
                                                 <div>
-                                                    <h6 class="pt-4 fw-bold">Hamba Allah</h6>
+                                                    <h6 class="pt-4 fw-bold">{{$review['User']['name']}}</h6>
                                                     <small>{{ $review['note'] }}</small>
                                                     <div class="text-end me-4 my-2">
                                                         <span class="">
@@ -256,18 +253,20 @@
                                         </span>
                                         </small></div>
                                     <div class="text-center text-muted pt-2"><span>Beli sekali akses selamanya</span></div>
-                                    <div class="d-grid gap-2 p-2 px-4 my-2"><a  onclick="event.preventDefault();
+                                    <div class="d-grid gap-2 p-2 px-4 my-2"><a
+                                            onclick="event.preventDefault();
                                         document.getElementById('form-order').submit();"
                                             class="btn btn-success btn-rounded py-3 text-uppercase fw-bold"
                                             href="#">Beli
                                             Sekarang</a></div>
 
-                                            <form action="{{route('course.order.post')}}" id="form-order" method="POST" target="_blank">
-                                            @csrf
-                                            @method("POST")
-                                            <input type="hidden" value="{{$course['id']}}" name="course_id">
-                                            <input type="hidden" value="{{$course['type']}}" name="type">
-                                            </form>
+                                    <form action="{{ route('course.order.post') }}" id="form-order" method="POST"
+                                        target="_blank">
+                                        @csrf
+                                        @method('POST')
+                                        <input type="hidden" value="{{ $course['id'] }}" name="course_id">
+                                        <input type="hidden" value="{{ $course['type'] }}" name="type">
+                                    </form>
                                 </div>
                             </div>
                         </div>

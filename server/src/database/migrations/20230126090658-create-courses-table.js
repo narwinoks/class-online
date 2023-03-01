@@ -47,6 +47,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true,
       },
+      excerpt: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       mentor_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

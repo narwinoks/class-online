@@ -18,12 +18,14 @@
                                         src="https://codepolitan.com/assets/img/placeholder.jpg" width="30"
                                         class="img-fluid me-2" alt=""><span class="mt-1">Semua Kelas</span></div>
                             </li>
-                            <li class="list-group-item border-0 text-muted px-0" role="button" style="">
-                                <div class="d-flex align-items-center"><img
-                                        src="https://cdn-cdpl.sgp1.digitaloceanspaces.com/assets/img/Teknologi/box-icon-html.jpg"
-                                        width="30" class="img-fluid me-2" alt="web"><span class="mt-1">Web</span>
-                                </div>
-                            </li>
+                            @foreach ($categories as $key => $category)
+                                <li class="list-group-item border-0 text-muted px-0" role="button" style="">
+                                    <div class="d-flex align-items-center"><img src="{{ $category['logo'] }}" width="30"
+                                            class="img-fluid me-2" alt="web"><span
+                                            class="mt-1">{{ $category['name'] }}</span>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -66,10 +68,11 @@
                                 </div>
                             </div>
                             <div class="col-md-5 col-lg-4 ms-auto">
-                                    <div class="input-group"><input id="search_value" type="search" class="form-control shadow-none"
-                                            placeholder="cari kelas dan enter disini..."><button
-                                            class="input-group-text bg-white text-muted" role="button" type="submit" onclick="loadCoursesData()"
-                                            title="Cari">Search</button></div>
+                                <div class="input-group"><input id="search_value" type="search"
+                                        class="form-control shadow-none"
+                                        placeholder="cari kelas dan enter disini..."><button
+                                        class="input-group-text bg-white text-muted" role="button" type="submit"
+                                        onclick="loadCoursesData()" title="Cari">Search</button></div>
                             </div>
                         </div>
                     </div>
@@ -83,9 +86,9 @@
             </div>
     </section>
 @endsection
-@push("scripts")
+@push('scripts')
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('.filter-level').on('click', '.dropdown-item', function() {
                 // Get the selected value from the clicked item
                 $('.filter-level .dropdown-item').removeClass('active');
@@ -94,7 +97,7 @@
                 loadCoursesData();
             });
             loadCoursesData();
-            $("#search_value").keyup(function(){
+            $("#search_value").keyup(function() {
                 loadCoursesData();
             })
         });
@@ -105,11 +108,12 @@
 
         function loadCoursesData() {
             $("#loadingCourses").show();
-            const filter            =encodeURIComponent($(".filter-level .active").text());
-            const  search           =$("#search_value").val();
-            $("#coursesData").load("{{ route('course.getCourses', ['key' => 'courses_get']) }}&fileter=" + filter + "&name=" + search , () => {
-                $("#loadingCourses").hide();
-            })
+            const filter = encodeURIComponent($(".filter-level .active").text());
+            const search = $("#search_value").val();
+            $("#coursesData").load("{{ route('course.getCourses', ['key' => 'courses_get']) }}&fileter=" + filter +
+                "&name=" + search, () => {
+                    $("#loadingCourses").hide();
+                })
         }
     </script>
 @endpush

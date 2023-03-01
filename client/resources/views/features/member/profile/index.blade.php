@@ -96,7 +96,7 @@
             <div class="col-xl-12">
                 <!-- change password -->
                 <div class="card mb-4 mb-xl-0">
-                    <div class="card-header">Profile Picture</div>
+                    <div class="card-header">Update Password</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('member.profile.changePassword') }}">
                             @csrf
@@ -108,7 +108,7 @@
                                         <span class="input-group-text" id="basic-addon1"><i
                                                 class="fas fa-key"></i></span>
                                         <input type="password"
-                                            class="form-control  @error('old_password') is-invalid @enderror"
+                                            class="form-control  @error('password_old') is-invalid @enderror"
                                             placeholder="Password Old" aria-label="password"
                                             aria-describedby="basic-addon1" name="password_old" id="old_password"
                                             value="{{ old('password_old') }}">
@@ -118,7 +118,7 @@
                                                 <i class="fa fa-eye-slash"></i>
                                             </button>
                                         </div>
-                                        @error('old_password')
+                                        @error('password_old')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

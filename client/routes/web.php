@@ -85,6 +85,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     });
     Route::controller(BannerController::class)->prefix('/banner')->middleware('auth')->name('banner.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/data', 'data')->name('data');
+        Route::post('/', 'store')->name('store');
+        Route::get('/create', 'create')->name('create');
     });
 });

@@ -1,8 +1,9 @@
 @extends('templates.admin.main')
 @section('content')
-    <form method="POST" action="{{ route('admin.banner.store') }}">
+    <form method="POST" action="{{ route('admin.banner.update') }}">
         @csrf
-        @method('POST')
+        <input type="hidden" value="{{ $banner['id'] }}" name="id">
+        @method('PUT')
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4">
@@ -10,21 +11,22 @@
                     <div class="card-body">
                         <div>
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" placeholder="Title"
-                                aria-describedby="title-helper" name="title">
+                            <input type="text" class="form-control" id="title" placeholder="title"
+                                aria-describedby="title-helper" name="title" value="{{ old('title', $banner['title']) }}">
                         </div>
                         <div class="mb-3">
                             <label for="defaultSelect" class="form-label">Default select</label>
                             <select id="defaultSelect" class="form-select" name="type">
                                 <option value="">Default select</option>
                                 @foreach ($types as $key => $type)
-                                    <option value="{{ $type }}">{{ $type }}</option>
+                                    <option @selected($banner['type'] == $type) value="{{ $type }}">{{ $type }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3">{{ old('description', $banner['description']) }}</textarea>
                         </div>
                         <div class="my-3">
                             <div class="image-editor">
@@ -49,6 +51,7 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
+                <img width="300px" src="{{ $banner['image'] }}" alt="">
             </div>
         </div>
     </div>

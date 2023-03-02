@@ -1,7 +1,7 @@
-<form action="{{ route('admin.banner.delete', $model['id']) }}" method="post">
+<form action="{{ route('admin.categories.destroy', $model['id']) }}" method="post">
     @method('DELETE')
     @csrf
-    <a href="{{ route('admin.banner.edit', $model['id']) }}" class="btn btn-primary btn-sm">Update</a>
+    <a href="{{ route('admin.categories.edit', $model['id']) }}" class="btn btn-primary btn-sm">Update</a>
     <button type="submit" class="btn btn-danger btn-sm" id="delete">Delete</button>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

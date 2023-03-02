@@ -14,6 +14,15 @@ class DataController extends BaseController
         $param = [];
         $banner = $this->initialGetFeature($params, $param);
         $dataBanner = json_decode($banner->getBody(), true);
-        return datatables()->of($dataBanner['data'])->addColumn('action', 'features.admin.banner.action')->toJson();
+        return datatables()->of($dataBanner['data'])->addColumn('action', 'features.admin.banner.action')->addIndexColumn()->toJson();
+    }
+
+    public function categories()
+    {
+        $params = "categories";
+        $param = [];
+        $banner = $this->initialGetFeature($params, $param);
+        $dataBanner = json_decode($banner->getBody(), true);
+        return datatables()->of($dataBanner['data'])->addColumn('action', 'features.admin.categories.action')->addIndexColumn()->toJson();
     }
 }

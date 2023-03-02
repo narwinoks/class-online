@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 
 class BaseController extends Controller
 {
-    public function initialGetFeature($params, $param = [],$token="")
+    public function initialGetFeature($params, $param = [], $token = "")
     {
         $url = env("BASE_URL_API_DEV");
         $client = new Client(['base_uri' => $url]);
@@ -33,7 +33,7 @@ class BaseController extends Controller
         return $response;
     }
 
-    public function initialPostFeature($params, $param = [], $body = [] ,$token ="")
+    public function initialPostFeature($params, $param = [], $body = [], $token = "")
     {
         $url = env("BASE_URL_API_DEV");
         $client = new Client(['base_uri' => $url]);
@@ -58,7 +58,7 @@ class BaseController extends Controller
         }
         return $response;
     }
-    public function initialDeleteFeature($params, $param = [],$token)
+    public function initialDeleteFeature($params, $param = [], $token)
     {
         $url = env("BASE_URL_API_DEV");
         $client = new Client(['base_uri' => $url]);
@@ -81,7 +81,7 @@ class BaseController extends Controller
         }
         return $response;
     }
-    public function initialPutFeature($params, $param = [],$body,$token)
+    public function initialPutFeature($params, $param = [], $body, $token)
     {
         $url = env("BASE_URL_API_DEV");
         $client = new Client(['base_uri' => $url]);
@@ -104,5 +104,4 @@ class BaseController extends Controller
         }
         return $response;
     }
-    
 }

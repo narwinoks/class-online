@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="">
-            <a href="{{ route('admin.banner.create') }}" class="text-end btn btn-success btn-sm">Tambah Banner</a>
+            <a href="{{ route('admin.categories.create') }}" class="text-end btn btn-success btn-sm">Tambah Banner</a>
         </div>
     </div>
     <div class="row mt-5">
@@ -11,10 +11,9 @@
                 <table class="datatables-banner table border-top table-bordered text-center">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>No</th>
+                            <th>Logo</th>
                             <th>Name</th>
-                            <th>Title</th>
-                            <th>Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,7 +38,7 @@
             // DataTable
             $('.datatables-banner').DataTable({
                 ajax: {
-                    url: "{{ route('admin.data.banner') }}",
+                    url: "{{ route('admin.data.categories') }}",
                     type: 'GET'
                 },
                 columns: [{
@@ -49,17 +48,14 @@
                     },
 
                     {
-                        data: "image",
+                        data: "logo",
                         render: function(data, type, row) {
                             return '<img src="' + data + '" width="50" height="50">';
                         }
                     },
 
                     {
-                        data: 'title'
-                    },
-                    {
-                        data: 'type'
+                        data: 'name'
                     },
                     {
                         data: 'action'

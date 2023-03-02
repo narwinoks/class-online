@@ -1,30 +1,18 @@
 @extends('templates.admin.main')
 @section('content')
-    <form method="POST" action="{{ route('admin.banner.store') }}">
+    <form method="POST" action="{{ route('admin.categories.update') }}">
         @csrf
-        @method('POST')
+        @method('PUT')
+        <input type="hidden" value="{{ $category['id'] }}" name="id">
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4">
                     <h5 class="card-header">Default</h5>
                     <div class="card-body">
                         <div>
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" placeholder="Title"
-                                aria-describedby="title-helper" name="title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="defaultSelect" class="form-label">Default select</label>
-                            <select id="defaultSelect" class="form-select" name="type">
-                                <option value="">Default select</option>
-                                @foreach ($types as $key => $type)
-                                    <option value="{{ $type }}">{{ $type }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name"
+                                aria-describedby="name-helper" name="name" value="{{ old('name', $category['name']) }}">
                         </div>
                         <div class="my-3">
                             <div class="image-editor">
@@ -34,7 +22,8 @@
                                     Resize image
                                 </div>
                                 <input type="range" class="cropit-image-zoom-input">
-                                <input type="hidden" name="image_data" class="hidden-image-data" />
+                                <input type="hidden" name="logo" class="hidden-image-data" />
+                                <input type="hidden" name="logo_old" value="{{ $category['logo'] }}" />
 
                             </div>
                         </div>
@@ -49,6 +38,7 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-body">
+                <img src="{{ $category['logo'] }}" width="100px" alt="">
             </div>
         </div>
     </div>
@@ -57,18 +47,18 @@
 @push('styles')
     <style>
         .cropit-preview {
-            width: 600px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
         .cropit-preview-image-container {
-            width: 600px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
         .cropit-preview-image {
-            min-width: 600px;
-            min-height: 200px;
+            min-width: 100px;
+            min-height: 100px;
         }
     </style>
 @endpush

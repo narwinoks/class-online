@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DataController;
 use App\Http\Controllers\Member\CourseController;
@@ -79,6 +80,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     });
     Route::controller(DataController::class)->prefix('/data')->name('data.')->group(function () {
         Route::get('/banner', 'banner')->name('banner');
+        Route::get('/categories', 'categories')->name('categories');
     });
     Route::controller(AdminDashboardController::class)->middleware('auth')->prefix('/dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -87,5 +89,16 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
         Route::get('/create', 'create')->name('create');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::delete('/{id}', 'delete')->name('delete');
+        Route::put("/", 'update')->name('update');
+    });
+    Route::controller(CategoryController::class)->prefix('/categories')->middleware('auth')->name('categories.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::put('/', 'update')->name('update');
     });
 });

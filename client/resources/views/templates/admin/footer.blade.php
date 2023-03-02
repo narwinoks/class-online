@@ -64,14 +64,10 @@
 <!-- Page JS -->
 <script src="{{ asset('assets/admin/assets/js/dashboards-analytics.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
-@include('components.alert')
-<script>
-    // Call the notify function
-    $.notify("Hello World");
-</script>
-
+<script src="{{ asset('assets/admin/assets/js/ui-toasts.js') }}"></script>
+<script src="{{ asset('assets/admin/assets/vendor/libs/toastr/toastr.js') }}"></script>
 @stack('scripts')
-
+@include('components.toast')
 </body>
 
 </html>

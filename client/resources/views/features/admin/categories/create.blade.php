@@ -1,6 +1,6 @@
 @extends('templates.admin.main')
 @section('content')
-    <form method="POST" action="{{ route('admin.banner.store') }}">
+    <form method="POST" action="{{ route('admin.categories.store') }}">
         @csrf
         @method('POST')
         <div class="row">
@@ -9,22 +9,9 @@
                     <h5 class="card-header">Default</h5>
                     <div class="card-body">
                         <div>
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" placeholder="Title"
-                                aria-describedby="title-helper" name="title">
-                        </div>
-                        <div class="mb-3">
-                            <label for="defaultSelect" class="form-label">Default select</label>
-                            <select id="defaultSelect" class="form-select" name="type">
-                                <option value="">Default select</option>
-                                @foreach ($types as $key => $type)
-                                    <option value="{{ $type }}">{{ $type }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name"
+                                aria-describedby="name-helper" name="name">
                         </div>
                         <div class="my-3">
                             <div class="image-editor">
@@ -34,7 +21,7 @@
                                     Resize image
                                 </div>
                                 <input type="range" class="cropit-image-zoom-input">
-                                <input type="hidden" name="image_data" class="hidden-image-data" />
+                                <input type="hidden" name="logo" class="hidden-image-data" />
 
                             </div>
                         </div>
@@ -57,18 +44,18 @@
 @push('styles')
     <style>
         .cropit-preview {
-            width: 600px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
         .cropit-preview-image-container {
-            width: 600px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
         .cropit-preview-image {
-            min-width: 600px;
-            min-height: 200px;
+            min-width: 100px;
+            min-height: 100px;
         }
     </style>
 @endpush

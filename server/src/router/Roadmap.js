@@ -5,6 +5,7 @@ const ValidationPost = require("../middleware/validations/roadmap/Post");
 
 router.get("/", RoadMapController.get);
 router.get("/:id", RoadMapController.show);
+router.get("/detail/:id", RoadMapController.detail);
 router.post("/", CheckToken, ValidationPost, RoadMapController.save);
 router.put("/:id", CheckToken, RoadMapController.edit);
 router.delete("/:id", CheckToken, RoadMapController.destroy);

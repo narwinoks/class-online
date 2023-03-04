@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4">
-                    <h5 class="card-header">Default</h5>
+                    <h5 class="card-header">Form Add Banner</h5>
                     <div class="card-body">
                         <div>
                             <label for="title" class="form-label">Title</label>

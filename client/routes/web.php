@@ -15,6 +15,7 @@ use App\Http\Controllers\Member\MyOrderController;
 use App\Http\Controllers\Member\MyRoadmapController;
 use App\Http\Controllers\Member\OrderController;
 use App\Http\Controllers\Member\ProfileController;
+use App\Http\Controllers\Admin\RoadMapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     Route::controller(DataController::class)->prefix('/data')->name('data.')->group(function () {
         Route::get('/banner', 'banner')->name('banner');
         Route::get('/categories', 'categories')->name('categories');
+        Route::get('/road-map', 'roadMap')->name('roadMap');
     });
     Route::controller(AdminDashboardController::class)->middleware('auth')->prefix('/dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -100,5 +102,14 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::delete('/{id}', 'destroy')->name('destroy');
         Route::put('/', 'update')->name('update');
+    });
+    // roadMap routes
+    Route::controller(RoadMapController::class)->prefix('/roadmap')->name('roadmap.')->middleware('auth')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 });

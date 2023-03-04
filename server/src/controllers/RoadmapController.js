@@ -3,6 +3,7 @@ const ShowRoadMap = require("../services/Roadmap/ShowRoadmapService");
 const PostRoadMap = require("../services/Roadmap/PostRoadmapService");
 const DeleteRoadmap = require("../services/Roadmap/DeleteRoadmapService");
 const EditRoadmap = require("../services/Roadmap/EditRoadmapService");
+const DetailRoadmap = require("../services/Roadmap/DetailRoadMapService");
 
 const get = async (req, res, next) => {
   try {
@@ -23,6 +24,15 @@ const show = async (req, res, next) => {
 const save = async (req, res, next) => {
   try {
     const response = await PostRoadMap(req);
+    res.status(response.status).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
+const detail = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const response = await DetailRoadmap(id);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);
@@ -51,4 +61,5 @@ module.exports = {
   show,
   edit,
   destroy,
+  detail,
 };

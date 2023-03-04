@@ -438,10 +438,8 @@
                             <div data-i18n="Dashboards">Dashboards</div>
                         </a>
                     </li>
-
                     <!-- Layouts -->
-                    <li class="menu-item
-">
+                    <li class="menu-item">
                         <a href="javascript:void(0)" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Master">Master</div>
@@ -461,6 +459,12 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="menu-item active">
+                        <a href="javascript:void(0)" class="menu-link">
+                            <i class="menu-icon tf-icons bx bxs-user-circle"></i>
+                            <div data-i18n="Mentor">Mentor</div>
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -1,17 +1,51 @@
 @extends('templates.admin.main')
 @section('content')
-    <form method="POST" action="{{ route('admin.categories.store') }}">
+    <form method="POST" action="{{ route('admin.roadmap.store') }}">
         @csrf
         @method('POST')
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4">
-                    <h5 class="card-header">Form Add Category</h5>
+                    <h5 class="card-header">Form Add RoadMap</h5>
                     <div class="card-body">
-                        <div>
+                        <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" placeholder="Name"
-                                aria-describedby="name-helper" name="name">
+                                aria-describedby="name-helper" name="name" value="{{ old('name') }}">
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="price" class="form-label">Price</label>
+                                    <input type="text" class="form-control" id="price" placeholder="Price"
+                                        aria-describedby="name-helper" name="price" value="{{ old('price') }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="type" class="form-label">Type</label>
+                                    <select id="type" class="form-select" name="type">
+                                        <option value="">Type</option>
+                                        <option value="free">Free</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="level" class="form-label">Level</label>
+                            <select id="level" class="form-select" name="level">
+                                <option value="">Level</option>
+                                @foreach ($level as $key => $value)
+                                    <option value="{{ $value }}" {{ old('level') == $value ? 'selected' : '' }}>
+                                        {{ $value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="3" name="description">{{ old('description') }}</textarea>
                         </div>
                         <div class="my-3">
                             <div class="image-editor">
@@ -44,17 +78,17 @@
 @push('styles')
     <style>
         .cropit-preview {
-            width: 100px;
+            width: 120px;
             height: 100px;
         }
 
         .cropit-preview-image-container {
-            width: 100px;
+            width: 120px;
             height: 100px;
         }
 
         .cropit-preview-image {
-            min-width: 100px;
+            min-width: 120px;
             min-height: 100px;
         }
     </style>

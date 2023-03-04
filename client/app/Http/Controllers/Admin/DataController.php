@@ -21,8 +21,23 @@ class DataController extends BaseController
     {
         $params = "categories";
         $param = [];
-        $banner = $this->initialGetFeature($params, $param);
-        $dataBanner = json_decode($banner->getBody(), true);
-        return datatables()->of($dataBanner['data'])->addColumn('action', 'features.admin.categories.action')->addIndexColumn()->toJson();
+        $categories = $this->initialGetFeature($params, $param);
+        $dataCategory = json_decode($categories->getBody(), true);
+        return datatables()->of($dataCategory['data'])
+            ->addColumn('action', 'features.admin.categories.action')
+            ->addIndexColumn()->toJson();
+    }
+
+    public function roadMap()
+    {
+        $params = "roadmap";
+        $param = [];
+        $roadMap = $this->initialGetFeature($params, $param);
+        $dataRoadMap = json_decode($roadMap->getBody(), true);
+        return datatables()->of($dataRoadMap['data'])
+            ->editColumn('price', function ($dataRoadMap) {
+                return covert_money($dataRoadMap['price']);
+            })
+            ->addColumn('action', 'features.admin.roadmap.action')->addIndexColumn()->toJson();
     }
 }

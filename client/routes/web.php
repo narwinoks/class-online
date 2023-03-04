@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DataController;
+use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Member\CourseController;
 use App\Http\Controllers\Member\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -83,6 +85,7 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::get('/banner', 'banner')->name('banner');
         Route::get('/categories', 'categories')->name('categories');
         Route::get('/road-map', 'roadMap')->name('roadMap');
+        Route::get('/course', 'course')->name('course');
     });
     Route::controller(AdminDashboardController::class)->middleware('auth')->prefix('/dashboard')->name('dashboard.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -111,5 +114,15 @@ Route::prefix('/admin')->name('admin.')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::put('/', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
+    });
+    // MENTOR ROUTE
+    Route::controller(MentorController::class)->prefix('/mentor')->name('mentor.')->middleware('auth')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+    });
+    // COURSE ROUTE
+    Route::controller(AdminCourseController::class)->prefix('/course')->name('course.')->middleware('auth')->group(function () {
+        Route::get('/', 'index')->name('index');
     });
 });

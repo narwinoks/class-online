@@ -4,5 +4,5 @@ module.exports = async (id) => {
   if (!chapter)
     return { status: 404, success: false, message: "data not found" };
   chapter.destroy();
-  return { status: 404, success: true, message: "successfully" };
+  return { status: 200, success: true, message: "successfully" };
 };

@@ -3,7 +3,7 @@ const v = new validator();
 
 module.exports = async (req, res, next) => {
   const schema = {
-    course_id: "number|empty:false",
+    course_id: "string|empty:false",
     name: "string|empty:false",
   };
   //   add validation

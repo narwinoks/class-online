@@ -183,12 +183,14 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $chapter['name'] }}</h5>
                             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="javascript:void(0)" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="javascript:void(0)" class="btn btn-primary btn-sm btn-edit-lesson"
+                                data-id="{{ $chapter['id'] }}" data-course="{{ $chapter['course_id'] }}">Edit</a>
                             <button type="button" data-id="{{ $chapter['id'] }}"
                                 class="btn btn-success btn-sm btn-add-lesson">
                                 Add Lesson
                             </button>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-sm delete-chapter"
+                                data-id="{{ $chapter['id'] }}">Delete</a>
                         </div>
                     </div>
                 @endforeach
@@ -280,6 +282,10 @@
             buttonAdd();
             saveLesson();
             addChapters();
+            saveChapters();
+            deleteChapters();
+            editChapter();
+            saveEditChapter();
         })
 
 
@@ -302,7 +308,7 @@
         }
 
         function saveLesson() {
-            $("body").on("click", ".save-chapter", function(e) {
+            $("body").on("click", ".save-lessons", function(e) {
                 var chapter_id = $("#chapter_id").val();
                 var name = $("#chapter").val();
                 var video = $("#video").val();
@@ -338,7 +344,7 @@
                 e.preventDefault();
                 $.ajax({
                     type: "GET",
-                    url: '{{ route('admin.lessons.create') }}',
+                    url: '{{ route('admin.chapters.create') }}',
                     data: {
                         course_id: $(this).attr("data-id"),
                         key: "add_chapters",
@@ -347,6 +353,105 @@
                         $(".modal-content").html(data);
                         $("#modal-lessons-show").modal("show");
                     },
+                });
+            });
+        }
+
+        function saveChapters() {
+            $("body").on("click", ".save-chapter", function(e) {
+                var course_id = $("#course_id").val();
+                var name = $("#chapter").val();
+                var description = $("#description").val();
+                $.ajax({
+                    type: "POST",
+                    url: '{{ route('admin.chapters.store') }}',
+                    data: {
+                        course_id: course_id,
+                        name: name,
+                    },
+                    success: function(data) {
+                        toastr.success('Success !', 'Success', {
+                            timeOut: 3000
+                        });
+                        $("#modal-lessons-show").modal("hide");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        showError(err.responseJSON.message);
+                    }
+                });
+
+            });
+
+        }
+
+        function deleteChapters() {
+            $("body").on("click", ".delete-chapter", function(e) {
+                var chapterId = $(this).attr("data-id");
+                $.ajax({
+                    type: "DELETE",
+                    url: '{{ route('admin.chapters.delete') }}',
+                    data: {
+                        id: chapterId,
+                    },
+                    success: function(data) {
+                        toastr.success('Success !', 'Success', {
+                            timeOut: 3000
+                        });
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        showError(err.responseJSON.message);
+                    }
+                });
+            });
+        }
+
+        function editChapter() {
+            $("body").on("click", ".btn-edit-lesson", function(e) {
+                var chapterId = $(this).attr("data-id");
+                var course_id = $(this).attr("data-course");
+                $.ajax({
+                    type: "GET",
+                    url: '{{ route('admin.chapters.edit') }}',
+                    data: {
+                        id: chapterId,
+                        key: "edit_chapters",
+                        course_id: course_id,
+                    },
+                    success: function(data) {
+                        $(".modal-content").html(data);
+                        $("#modal-lessons-show").modal("show");
+                    },
+                });
+            });
+        }
+
+        function saveEditChapter() {
+            $("body").on("click", ".update-chapter", function(e) {
+                var id = $("#id_chpater").val();
+                var name = $("#chapter").val();
+                var description = $("#description").val();
+                var course_id = $("#course_id").val();
+
+                $.ajax({
+                    type: "PUT",
+                    url: '{{ route('admin.chapters.update') }}',
+                    data: {
+                        id: id,
+                        name: name,
+                        course_id: course_id
+                    },
+                    success: function(data) {
+                        toastr.success('Success !', 'Success', {
+                            timeOut: 3000
+                        });
+                        $("#modal-lessons-show").modal("hide");
+                        window.location.reload();
+                    },
+                    error: function(err) {
+                        showError(err.responseJSON.message);
+                    }
                 });
             });
         }

@@ -18,7 +18,6 @@ class LessonController extends BaseController
     public function store(Request $request)
     {
         $data               = $request->only('chapter_id', 'name', 'video');
-        $data['chapter_id'] = 1;
         $token              = Session::get('access_token');
         $url                = "lessons";
         $params             = [];

@@ -3,6 +3,7 @@ const ShowCoursesService = require("../services/Courses/ShowCoursesService");
 const PostCoursesService = require("../services/Courses/PostCoursesService");
 const DeleteCoursesService = require("../services/Courses/DeleteCoursesService");
 const EditCoursesService = require("../services/Courses/EditCoursesService");
+const DetailCoursesService = require("../services/Courses/DetailCourseService");
 
 const get = async (req, res, next) => {
   try {
@@ -20,9 +21,20 @@ const show = async (req, res, next) => {
     next(error);
   }
 };
+
+const detail = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const response = await DetailCoursesService(id);
+    res.status(response.status).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
 const save = async (req, res, next) => {
   try {
     const response = await PostCoursesService(req);
+    console.log(response);
     res.status(response.status).json(response);
   } catch (error) {
     next(error);
@@ -52,4 +64,5 @@ module.exports = {
   show,
   edit,
   destroy,
+  detail,
 };

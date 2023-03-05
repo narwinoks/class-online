@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="">
-            <a href="{{ route('admin.categories.create') }}" class="text-end btn btn-success btn-sm">Tambah Banner</a>
+            <a href="{{ route('admin.course.create') }}" class="text-end btn btn-success btn-sm">Tambah Course</a>
         </div>
     </div>
     <div class="row mt-5">

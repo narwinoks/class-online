@@ -4,15 +4,18 @@ const v = new validator();
 module.exports = async (req, res, next) => {
   const schema = {
     name: { type: "string" },
-    certificate: { type: "boolean" },
+    // certificate: { type: "boolean" },
     thumbnail: "url",
-    type: { type: "enum", values: ["free", "premium"] },
+    // type: { type: "enum", values: ["free", "premium"] },
     status: { type: "enum", values: ["draft", "published"] },
     // price: "number",
-    level: { type: "enum", values: ["all-level", "beginner","intermediate","advanced"] },
-    mentor_id : "number|empty:false",
-    roadmap_id : "number|empty:false",
-    description : "string"
+    level: {
+      type: "enum",
+      values: ["all-level", "beginner", "intermediate", "advanced"],
+    },
+    mentor_id: "string|empty:false",
+    roadmap_id: "string|empty:false",
+    description: "string",
   };
   //   add validation
   const validate = await v.validate(req.body, schema);

@@ -51,7 +51,6 @@ class DataController extends BaseController
             ->editColumn('price', function ($dataRoadMap) {
                 return covert_money($dataRoadMap['price']);
             })
-            ->addColumn('action', 'features.admin.roadmap.action')->addIndexColumn()->toJson();
-        // echo $dataRoadMap['data'];
+            ->addColumn('action', 'features.admin.course.action')->addIndexColumn()->toJson();
     }
 }

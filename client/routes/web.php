@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DataController;
+use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\Admin\MentorController;
 use App\Http\Controllers\Member\CourseController;
 use App\Http\Controllers\Member\HomeController;
@@ -124,5 +125,15 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     // COURSE ROUTE
     Route::controller(AdminCourseController::class)->prefix('/course')->name('course.')->middleware('auth')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'edit')->name('edit');
+        Route::post('/', 'store')->name('store');
+        Route::put('/', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('/create', 'create')->name('create');
+    });
+    // LESSON ROUTE
+    Route::controller(LessonController::class)->prefix('/lessons')->name('lessons.')->middleware('auth')->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
     });
 });

@@ -4,6 +4,7 @@ const ValidatorPost = require("../middleware/validations/Courses/Post");
 const CheckToken = require("../middleware/auth/checkToken");
 
 router.get("/", CourseController.get);
+router.get("/detail/:id", CourseController.detail);
 router.get("/:slug", CourseController.show);
 router.post("/", CheckToken, ValidatorPost, CourseController.save);
 router.put("/:id", CheckToken, ValidatorPost, CourseController.edit);

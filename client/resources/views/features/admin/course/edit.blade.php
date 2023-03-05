@@ -191,6 +191,8 @@
                             </button>
                             <a href="javascript:void(0)" class="btn btn-danger btn-sm delete-chapter"
                                 data-id="{{ $chapter['id'] }}">Delete</a>
+                            <a href="{{ route('admin.chapters.show', $chapter['id']) }}" class="btn btn-info btn-sm"
+                                data-id="{{ $chapter['id'] }}">Show</a>
                         </div>
                     </div>
                 @endforeach
@@ -308,7 +310,7 @@
         }
 
         function saveLesson() {
-            $("body").on("click", ".save-lessons", function(e) {
+            $("body").on("click", ".edit-lessons", function(e) {
                 var chapter_id = $("#chapter_id").val();
                 var name = $("#chapter").val();
                 var video = $("#video").val();

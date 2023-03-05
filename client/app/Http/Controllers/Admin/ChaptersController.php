@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
+use Carbon\Carbon;
 
 class ChaptersController extends BaseController
 {
@@ -123,6 +123,33 @@ class ChaptersController extends BaseController
             return response()->json(['message' => $message], Response::HTTP_BAD_REQUEST);
         } else {
             return response()->json(['message' => 'Internal Server Error'], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function show($id)
+    {
+        $url        = "chapters/" . $id;
+        $params     = [];
+        $data       = $this->initialGetFeature($url, $params);
+        $response   = json_decode($data->getBody(), true);
+        $chapter    = $response['data'];
+        $lessons    = $this->getLessons($chapter['id']);
+        return view('features.admin.chapters.show', compact('chapter', 'lessons'));
+    }
+
+    public function getLessons($chapterId)
+    {
+        $url        = "lessons";
+        $params     = [
+            'chapter_id' => $chapterId
+        ];
+        $data       = $this->initialGetFeature($url, $params);
+        if ($data->getStatusCode() == 200) {
+            $response   = json_decode($data->getBody(), true);
+            $lessons    = $response['data'];
+            return $lessons;
+        } else {
+            return [];
         }
     }
 }

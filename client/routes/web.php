@@ -135,13 +135,17 @@ Route::prefix('/admin')->name('admin.')->group(function () {
     // LESSON ROUTE
     Route::controller(LessonController::class)->prefix('/lessons')->name('lessons.')->middleware('auth')->group(function () {
         Route::get('/create', 'create')->name('create');
+        Route::get('/edit', 'edit')->name('edit');
         Route::post('/', 'store')->name('store');
+        Route::put('/', 'update')->name('update');
+        Route::delete('/', 'destroy')->name('delete');
     });
     // CHAPTERS ROUTE
 
     Route::controller(ChaptersController::class)->prefix('/chapters')->name('chapters.')->middleware('auth')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::get('/edit', 'edit')->name('edit');
+        Route::get('/show/{id}', 'show')->name('show');
         Route::post('/', 'store')->name('store');
         Route::put('/', 'update')->name('update');
         Route::delete('/', 'destroy')->name('delete');

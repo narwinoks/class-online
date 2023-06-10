@@ -2,7 +2,7 @@
 Class Online Project 
 
 
-## Tech Stack
+## Tech Stack 
 
 **Client:** Laravel
 
